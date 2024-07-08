@@ -1,0 +1,178 @@
+[
+    {
+        "category": "Trackers",
+        "settings": [
+            {
+                "type": 6,
+                "name": "tracker_pet_enable",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "tracker_obby_enable",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "tracker_gold_enable",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "tracker_quartz_enable",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "tracker_umber_enable",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "tracker_tungsten_enable",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "tracker_glacite_enable",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "tracker_mithril_enable",
+                "value": true
+            }
+        ]
+    },
+    {
+        "category": "Util",
+        "settings": [
+            {
+                "type": 2,
+                "name": "reset"
+            },
+            {
+                "type": 2,
+                "name": "afk_obby"
+            },
+            {
+                "type": 6,
+                "name": "disable_afk",
+                "value": true
+            },
+            {
+                "type": 4,
+                "name": "afk_threshold",
+                "value": "15"
+            },
+            {
+                "type": 2,
+                "name": "update_bazaar"
+            },
+            {
+                "type": 2,
+                "name": "move_obby_gui"
+            }
+        ]
+    },
+    {
+        "category": "Pet",
+        "settings": [
+            {
+                "type": 6,
+                "name": "display_pet_xp",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "display_pet_lvl_time",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "display_pet_profit",
+                "value": false
+            },
+            {
+                "type": 6,
+                "name": "format_pet_xp_m",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "lvl_seconds_enable",
+                "value": false
+            },
+            {
+                "type": 6,
+                "name": "format_pet_profit_m",
+                "value": false
+            }
+        ]
+    },
+    {
+        "category": "Obsidian",
+        "settings": [
+            {
+                "type": 6,
+                "name": "display_obby_block",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "display_obby_collected",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "display_obby_time",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "display_obby_profit_e",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "display_obby_profit_o",
+                "value": false
+            },
+            {
+                "type": 4,
+                "name": "desired_e_price",
+                "value": "4000"
+            },
+            {
+                "type": 6,
+                "name": "display_obby_profit_e_desired",
+                "value": false
+            },
+            {
+                "type": 4,
+                "name": "desired_o_price",
+                "value": "130000"
+            },
+            {
+                "type": 6,
+                "name": "display_obby_profit_o_desired",
+                "value": false
+            },
+            {
+                "type": 6,
+                "name": "format_blocks_m",
+                "value": false
+            },
+            {
+                "type": 6,
+                "name": "format_obby_m",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "format_obby_profit_m",
+                "value": true
+            }
+        ]
+    }
+]
