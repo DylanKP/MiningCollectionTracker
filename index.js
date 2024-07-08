@@ -57,4 +57,4 @@ function test() {
     }
 }
 
-ChatLib.chat("&7[&bCollection Tracker&7] &r&fFully loaded! Use &b/ctrack &fto open the tracker gui");
+ChatLib.chat("&7[&bCollection Tracker&7] &r&fFully loaded! Use &b/ctrack &fto open the tracker gui.");
