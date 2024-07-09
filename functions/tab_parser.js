@@ -40,6 +40,9 @@ export function get_fortune() {
 
         let tab_fortune = tab_fortune_raw.split('Mining Fortune: ☘')[1];
         tab_fortune = Number(tab_fortune);
+        if (isNaN(tab_fortune)) {
+            return fortune;
+        }
         tab_fortune = (tab_fortune / 100) + 1;
         fortune = tab_fortune;
         if (fiesta_check() == true) {
