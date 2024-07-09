@@ -2,7 +2,7 @@ import Settings from "../Amaterasu/core/Settings"
 import DefaultConfig from "../Amaterasu/core/DefaultConfig"
 import { getBazaarItems } from "./functions/other";
 
-const defaultConf = new DefaultConfig("Collection-Tracker", "./data/settings.json");
+const defaultConf = new DefaultConfig("MiningCollectionTracker", "./data/settings.json");
 
 defaultConf
     .addSwitch({ 
@@ -336,7 +336,7 @@ defaultConf
         }
     });
 
-const config = new Settings("Collection-Tracker", defaultConf, "data/ColorScheme.json")
+const config = new Settings("MiningCollectionTracker", defaultConf, "data/ColorScheme.json")
     .setCommand("collection-tracker", ["ctrack"])
 
 config
