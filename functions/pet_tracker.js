@@ -12,8 +12,8 @@ function chat_parser(event) {
 };
 
 let previous_pet_name = null;
-let previous_pet_tier = null;
-let previous_pet_lvl = null;
+let previous_pet_tier = "common";
+let previous_pet_lvl = 2;
 let previous_pet_exp = 0;
 
 let pet_xp_gained = 0;
@@ -26,6 +26,13 @@ let pet_data_reset = false;
 let already_afk = true;
 
 export function pet_tracker(name, tier, lvl, exp, reset) {
+    if (global_vars.pet_widget_alert === true) {
+        name = previous_pet_name;
+        tier = previous_pet_tier;
+        lvl = previous_pet_lvl;
+        exp = previous_pet_exp;
+    }
+
     set_initial_pet_data(name, tier, lvl, exp, reset);
     
     // Reset pet_afk_start only when pet experience changes, indicating activity
@@ -49,10 +56,6 @@ export function pet_tracker(name, tier, lvl, exp, reset) {
         pet_data_reset = true;
         ChatLib.chat("&7[&bCollection Tracker&7] &r&fPet tracker AFK...");
         already_afk = true;
-    }
-    
-    if (global_vars.pet_widget_alert === true || global_vars.pet_afk === true) {
-        return [0, 0, 0, 0, 0];
     }
     
     if (previous_pet_lvl !== lvl) { // If lvl changes, calculate exp gained
@@ -99,6 +102,7 @@ function set_initial_pet_data(name, tier, lvl, exp, reset) {
         pet_data_reset = true;
         global_vars.pet_afk = true;
         already_afk = true;
+        pet_xp_gained = 0;
         total_pet_xp = 0;
     }
     if (pet_data_reset === true && (name !== previous_pet_name || tier !== previous_pet_tier || lvl !== previous_pet_lvl || exp !== previous_pet_exp)) {
@@ -107,7 +111,6 @@ function set_initial_pet_data(name, tier, lvl, exp, reset) {
         previous_pet_lvl = lvl;
         previous_pet_exp = exp;
 
-        pet_xp_gained = 0;
         pet_afk_start = null;
         previous_session_time = 0;
 

@@ -90,7 +90,7 @@ export function get_pet_data() {
         return [pet_name, pet_tier, pet_lvl, pet_exp]
     } else {
         global_vars.pet_widget_alert = true;
-        return [null, null, null, null];
+        return [null, "common", 2, 0];
     }
 }
 
