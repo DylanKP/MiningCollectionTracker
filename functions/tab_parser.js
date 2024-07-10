@@ -1,7 +1,7 @@
 import { global_vars } from "./global_vars";
 
 let area = null;
-export function tab_parser() {
+export function get_area() {
     let tab_area = TabList.getNames().map(a => a.removeFormatting()).filter(a => a.includes('Area: '))[0];
     if (tab_area != null) {
         area = tab_area.split('Area: ')[1];
@@ -45,7 +45,8 @@ export function get_fortune() {
         }
         tab_fortune = (tab_fortune / 100) + 1;
         fortune = tab_fortune;
-        if (fiesta_check() == true) {
+        let fiesta = fiesta_check();
+        if (fiesta == true) {
             fortune = fortune * 2;
         }
         return fortune;

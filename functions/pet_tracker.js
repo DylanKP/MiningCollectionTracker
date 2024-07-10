@@ -22,7 +22,8 @@ let total_pet_xp = 0;
 let previous_session_time = 0;
 let pet_afk_start = null;
 
-let pet_data_reset = true;
+let pet_data_reset = false;
+let already_afk = true;
 
 export function pet_tracker(name, tier, lvl, exp, reset) {
     set_initial_pet_data(name, tier, lvl, exp, reset);
@@ -35,15 +36,19 @@ export function pet_tracker(name, tier, lvl, exp, reset) {
         }
         pet_afk_start = Date.now();
         global_vars.pet_afk = false;
+        already_afk = false;
     }
 
     // If the pet_afk_start is set and the AFK time is more than 15 seconds, update the session time
-    if (pet_afk_start != null && (Date.now() - pet_afk_start > 60000)) {
+    if (pet_afk_start != null && (Date.now() - pet_afk_start > 15000)) {
+        global_vars.pet_afk = true;
+    }
+    if (global_vars.pet_afk === true && already_afk === false) {
         previous_session_time += Date.now() - pet_afk_start;
         pet_afk_start = null;
-        global_vars.pet_afk = true;
         pet_data_reset = true;
         ChatLib.chat("&7[&bCollection Tracker&7] &r&fPet tracker AFK...");
+        already_afk = true;
     }
     
     if (global_vars.pet_widget_alert === true || global_vars.pet_afk === true) {
@@ -92,6 +97,8 @@ export function pet_tracker(name, tier, lvl, exp, reset) {
 function set_initial_pet_data(name, tier, lvl, exp, reset) {
     if (reset == true) {
         pet_data_reset = true;
+        global_vars.pet_afk = true;
+        already_afk = true;
         total_pet_xp = 0;
     }
     if (pet_data_reset === true && (name !== previous_pet_name || tier !== previous_pet_tier || lvl !== previous_pet_lvl || exp !== previous_pet_exp)) {

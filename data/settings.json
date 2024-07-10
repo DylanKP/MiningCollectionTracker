@@ -96,7 +96,7 @@
             {
                 "type": 6,
                 "name": "format_pet_xp_m",
-                "value": true
+                "value": false
             },
             {
                 "type": 6,

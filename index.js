@@ -2,7 +2,7 @@ import { drill_tracker } from "./functions/drill_tracker";
 import { global_vars, display_obsidian } from "./functions/global_vars";
 import { getBazaarItems } from "./functions/other";
 import { pet_tracker } from "./functions/pet_tracker";
-import { tab_parser, get_fortune, get_pet_data } from "./functions/tab_parser"; 
+import { get_area, get_fortune, get_pet_data } from "./functions/tab_parser"; 
 import { check_afk, timer } from "./functions/timer";
 import { obby_calculate, format_pet } from "./functions/calculate"; 
 import { build_obby_gui } from "./functions/build_gui";
@@ -28,7 +28,7 @@ function on_tick() {
     }
 
     let additional_blocks_broken = drill_tracker();
-    global_vars.area = tab_parser();
+    global_vars.area = get_area();    
     let fortune = get_fortune();
 
     let pet_data = get_pet_data();

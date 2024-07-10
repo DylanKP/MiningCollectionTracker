@@ -1,4 +1,4 @@
-//import settings from "../settings.js";
+
 
 
 export const collection_timers = {

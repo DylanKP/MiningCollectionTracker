@@ -1,6 +1,8 @@
 import Settings from "../Amaterasu/core/Settings"
 import DefaultConfig from "../Amaterasu/core/DefaultConfig"
 import { getBazaarItems } from "./functions/other";
+import { global_vars } from "./functions/global_vars";
+import { collection_timers } from "./functions/timer";
 
 const defaultConf = new DefaultConfig("MiningCollectionTracker", "./data/settings.json");
 
@@ -88,7 +90,8 @@ defaultConf
         subcategory: "QOL",
         tags: ["reset"],
         onClick(setting) {
-
+            global_vars.reset = true;
+            ChatLib.chat("&7[&bCollection Tracker&7] &r&fResetting Collection Tracker...")
         }
     })
     .addButton({
@@ -99,6 +102,15 @@ defaultConf
         subcategory: "QOL",
         tags: ["afk"],
         onClick(setting) {
+            collection_timers.Obsidian.is_afk = true;
+            collection_timers.Gold.is_afk = true;
+            collection_timers.Quartz.is_afk = true;
+            collection_timers.Umber.is_afk = true;
+            collection_timers.Tungsten.is_afk = true;
+            collection_timers.Glacite.is_afk = true;
+            collection_timers.Mithril.is_afk = true;
+            global_vars.pet_afk = true;
+            ChatLib.chat("&7[&bCollection Tracker&7] &r&fAll trackers afk...")
         }
     })
     .addSwitch({ 
@@ -108,7 +120,6 @@ defaultConf
         description: "Disables the calculator from going into AFK mode after a certain amount of inactivity.",
         subcategory: "AFK",
         registerListener(previousvalue, newvalue) {
-            
         }
     })
     .addTextInput({ 
