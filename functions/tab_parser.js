@@ -1,8 +1,8 @@
 import { global_vars } from "./global_vars";
 
 let area = null;
-export function get_area() {
-    let tab_area = TabList.getNames().map(a => a.removeFormatting()).filter(a => a.includes('Area: '))[0];
+export function get_area(data) {
+    let tab_area = data.map(a => a.removeFormatting()).filter(a => a.includes('Area: '))[0];
     if (tab_area != null) {
         area = tab_area.split('Area: ')[1];
     }
@@ -11,13 +11,12 @@ export function get_area() {
 
 
 let fiesta = false;
-function fiesta_check() {
-    let tab_event_raw = TabList.getNames().map(a => a.removeFormatting()).filter(a => a.includes('Event: '))[0];
+function fiesta_check(data) {
+    let tab_event_raw = data.map(a => a.removeFormatting()).filter(a => a.includes('Event: '))[0];
     if (tab_event_raw != null) {
         global_vars.event_widget_alert = false;
 
         let event = tab_event_raw.split('Event: ')[1];
-        
         if (event === "Mining Fiesta") {
             fiesta = true;
             return fiesta;
@@ -33,8 +32,9 @@ function fiesta_check() {
 
 
 let fortune = 1;
-export function get_fortune() {
-    let tab_fortune_raw = TabList.getNames().map(a => a.removeFormatting()).filter(a => a.includes('Mining Fortune: '))[0];
+export function get_fortune(data) {
+    let fiesta = fiesta_check(data);
+    let tab_fortune_raw = data.map(a => a.removeFormatting()).filter(a => a.includes('Mining Fortune: '))[0];
     if (tab_fortune_raw != null) {
         global_vars.fortune_widget_alert = false;
 
@@ -45,7 +45,6 @@ export function get_fortune() {
         }
         tab_fortune = (tab_fortune / 100) + 1;
         fortune = tab_fortune;
-        let fiesta = fiesta_check();
         if (fiesta == true) {
             fortune = fortune * 2;
         }
@@ -57,8 +56,7 @@ export function get_fortune() {
 }
 
 
-export function get_pet_data() {
-    let data = TabList.getNames();
+export function get_pet_data(data) {
     let processed_tab_data = data.map(a => a.removeFormatting());
     let pet_index = processed_tab_data.indexOf("Pet:");
     if (pet_index !== -1) {

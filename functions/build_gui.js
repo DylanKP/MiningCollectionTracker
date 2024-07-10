@@ -57,11 +57,11 @@ export function build_obby_gui() {
             obby_lines.push("Desired Net Ovoid Profit: " + display_obsidian.o_desired_profit_net);
         }
 
-        if (global_vars.event_widget_alert == true) {
+        if (global_vars.event_widget_alert == true && settings().hide_widget_alerts == false) {
             obby_lines.push("Event Widget Not Available. Check /tablist");
         }
 
-        if (global_vars.fortune_widget_alert == true) {
+        if (global_vars.fortune_widget_alert == true && settings().hide_widget_alerts == false) {
             obby_lines.push("Fortune Widget Not Available. Check /tablist");
         }
         display_obby.setString("test");
@@ -84,7 +84,7 @@ export function build_obby_gui() {
             }
         }
 
-        if (global_vars.pet_widget_alert == true) {
+        if (global_vars.pet_widget_alert == true && settings().hide_widget_alerts == false) {
             pet_lines.push("Pet Widget Not Available. Check /tablist");
         }
     }

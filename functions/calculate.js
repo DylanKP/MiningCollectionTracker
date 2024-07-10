@@ -1,5 +1,5 @@
 import settings from "../settings";
-import { global_vars, display_obsidian, display_pet_data } from "./global_vars";
+import { global_vars, display_obsidian } from "./global_vars";
 
 register("chat", ()=>{
     if (global_vars.area == "The End"){
@@ -94,93 +94,6 @@ function format_obby(blocks_per_hour, obby_per_hour, e_obby_profit_net, e_obby_p
         display_obsidian.o_desired_profit_ph = ovoid_profit_desired_ph.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 }
-
-
-export function format_pet(exp_next_lvl, exp_100_lvl, exp_max_lvl, pet_xp_ph, total_xp) {
-
-    
-    let total_hours_exp_n = exp_next_lvl;
-    let exp_next_lvl_h = Math.floor(total_hours_exp_n);
-    let total_minutes_exp_n = (total_hours_exp_n - exp_next_lvl_h) * 60;
-    let exp_next_lvl_m = Math.floor(total_minutes_exp_n);
-    let total_seconds_exp_n = (total_minutes_exp_n - exp_next_lvl_m) * 60;
-    let exp_next_lvl_s = Math.floor(total_seconds_exp_n);
-
-    display_pet_data.display_next_lvl_time = "";
-    if (exp_next_lvl_h > 0) {
-        display_pet_data.display_next_lvl_time = exp_next_lvl_h + "h ";
-    }
-    if (exp_next_lvl_m > 0 || exp_next_lvl_h > 0) {
-        display_pet_data.display_next_lvl_time += exp_next_lvl_m + "m ";
-    }
-    if (settings().lvl_seconds_enable == true) {
-        display_pet_data.display_next_lvl_time += exp_next_lvl_s + "s";
-    }
-    if (display_pet_data.display_next_lvl_time == "") { //for there to be no time at this point means it cant show seconds and no minutes or hours so 0m is displayed
-        display_pet_data.display_next_lvl_time = "0m";
-    }
-
-    
-    if (exp_100_lvl != 0) {
-        let total_hours_exp_m = exp_100_lvl;
-        let exp_max_lvl_h = Math.floor(total_hours_exp_m);
-        let total_minutes_exp_m = (total_hours_exp_m - exp_max_lvl_h) * 60;
-        let exp_max_lvl_m = Math.floor(total_minutes_exp_m);
-        let total_seconds_exp_m = (total_minutes_exp_m - exp_max_lvl_m) * 60;
-        let exp_max_lvl_s = Math.floor(total_seconds_exp_m);
-        display_pet_data.display_100_lvl_time = "";
-        if (exp_max_lvl_h > 0) {
-            display_pet_data.display_100_lvl_time = exp_max_lvl_h + "h ";
-        }
-        if (exp_max_lvl_m > 0 || exp_max_lvl_h > 0) {
-            display_pet_data.display_100_lvl_time += exp_max_lvl_m + "m ";
-        }
-        if (settings().lvl_seconds_enable == true) {
-            display_pet_data.display_100_lvl_time += exp_max_lvl_s + "s";
-        }
-        if (display_pet_data.display_100_lvl_time == "") { //for there to be no time at this point means it cant show seconds and no minutes or hours so 0m is displayed
-            display_pet_data.display_100_lvl_time = "0m";
-        }
-    } else {
-        display_pet_data.display_100_lvl_time = 0;
-    }
-
-    
-    if (exp_max_lvl != 0) {
-        let total_hours_exp_x = exp_max_lvl;
-        let exp_max_lvl_h = Math.floor(total_hours_exp_x);
-        let total_minutes_exp_x = (total_hours_exp_x - exp_max_lvl_h) * 60;
-        let exp_max_lvl_m = Math.floor(total_minutes_exp_x);
-        let total_seconds_exp_x = (total_minutes_exp_x - exp_max_lvl_m) * 60;
-        let exp_max_lvl_s = Math.floor(total_seconds_exp_x);
-        display_pet_data.display_max_lvl_time = "";
-        if (exp_max_lvl_h > 0) {
-            display_pet_data.display_max_lvl_time = exp_max_lvl_h + "h ";
-        }
-        if (exp_max_lvl_m > 0 || exp_max_lvl_h > 0) {
-            display_pet_data.display_max_lvl_time += exp_max_lvl_m + "m ";
-        }
-        if (settings().lvl_seconds_enable == true) {
-            display_pet_data.display_max_lvl_time += exp_max_lvl_s + "s";
-        }
-        if (display_pet_data.display_max_lvl_time == "") { //for there to be no time at this point means it cant show seconds and no minutes or hours so 0m is displayed
-            display_pet_data.display_max_lvl_time = "0m";
-        }
-    } else {
-        display_pet_data.display_max_lvl_time = 0;
-    }
-
-    
-    
-    if (settings().format_pet_xp_m == true) {
-        display_pet_data.display_pet_xp_ph = (pet_xp_ph / 1000000).toFixed(2) + "M";
-        display_pet_data.display_total_xp = (total_xp / 1000000).toFixed(2) + "M";
-    } else {
-        display_pet_data.display_pet_xp_ph = pet_xp_ph.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        display_pet_data.display_total_xp = total_xp.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-}
-
 
 function format_time(time) {
     let total_seconds = Math.floor(time / 1000);

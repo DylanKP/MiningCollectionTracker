@@ -70,8 +70,9 @@
                 "name": "update_bazaar"
             },
             {
-                "type": 2,
-                "name": "move_obby_gui"
+                "type": 6,
+                "name": "hide_widget_alerts",
+                "value": true
             }
         ]
     },
@@ -96,12 +97,12 @@
             {
                 "type": 6,
                 "name": "format_pet_xp_m",
-                "value": false
+                "value": true
             },
             {
                 "type": 6,
                 "name": "lvl_seconds_enable",
-                "value": false
+                "value": true
             },
             {
                 "type": 6,

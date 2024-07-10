@@ -145,16 +145,12 @@ defaultConf
             getBazaarItems();
         }
     })
-    .addButton({
+    .addSwitch({
         category: "Util",
-        configName: "move_obby_gui",
-        title: "Move Obsidian Collection GUI",
-        description: "Moves the obsidian collection GUI to a new location. -- Not implemented yet --",
-        subcategory: "GUI",
-        tags: ["gui"],
-        onClick(setting) {
-            Client.currentGui.close();
-        }
+        configName: "hide_widget_alerts",
+        title: "Hide Widget Alerts",
+        description: "Stops the tracker from showing alerts if widget data is not available.",
+        subcategory: "Widget",
     })
 
 

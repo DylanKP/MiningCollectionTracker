@@ -1,10 +1,10 @@
 import { drill_tracker } from "./functions/drill_tracker";
 import { global_vars, display_obsidian } from "./functions/global_vars";
 import { getBazaarItems } from "./functions/other";
-import { pet_tracker } from "./functions/pet_tracker";
+import { pet_calculate } from "./functions/pet_tracker";
 import { get_area, get_fortune, get_pet_data } from "./functions/tab_parser"; 
 import { check_afk, timer } from "./functions/timer";
-import { obby_calculate, format_pet } from "./functions/calculate"; 
+import { obby_calculate } from "./functions/calculate"; 
 import { build_obby_gui } from "./functions/build_gui";
 
 
@@ -28,11 +28,12 @@ function on_tick() {
     }
 
     let additional_blocks_broken = drill_tracker();
-    global_vars.area = get_area();    
-    let fortune = get_fortune();
 
-    let pet_data = get_pet_data();
-    let pet_stats = pet_tracker(pet_data[0], pet_data[1], pet_data[2], pet_data[3], reset);
+    let tab_data = TabList.getNames();
+
+    global_vars.area = get_area(tab_data);    
+    let fortune = get_fortune(tab_data);
+    let pet_data = get_pet_data(tab_data);
 
 
 
@@ -47,7 +48,7 @@ function on_tick() {
     let mithril_time = time[6];
 
     
-    format_pet(pet_stats[0], pet_stats[1], pet_stats[2], pet_stats[3], pet_stats[4])
+    pet_calculate(pet_data[0], pet_data[1], pet_data[2], pet_data[3], reset);
     obby_calculate(reset, additional_blocks_broken, global_vars.area, obby_time, fortune);
 }
 
