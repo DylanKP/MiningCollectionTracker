@@ -1,10 +1,10 @@
 import { drill_tracker } from "./functions/drill_tracker";
 import { global_vars, display_obsidian } from "./functions/global_vars";
 import { getBazaarItems } from "./functions/other";
-import { pet_calculate } from "./functions/pet_tracker";
+import { pet_calculate } from "./functions/Calc-format/pet_tracker";
 import { get_area, get_fortune, get_pet_data } from "./functions/tab_parser"; 
 import { check_afk, timer } from "./functions/timer";
-import { obby_calculate } from "./functions/calculate"; 
+import { obby_calculate } from "./functions/Calc-format/calculate"; 
 import { build_obby_gui } from "./functions/build_gui";
 
 

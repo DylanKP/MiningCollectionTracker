@@ -1,6 +1,6 @@
-import settings from "../settings";
+import settings from "../../settings";
 import { sumlevel } from "./petLevelDict";
-import { global_vars, display_pet_data } from "./global_vars";
+import { global_vars, display_pet_data } from "../global_vars";
 
 register("chat", chat_parser);
 

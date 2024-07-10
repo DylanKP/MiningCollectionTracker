@@ -1,5 +1,5 @@
-import settings from "../settings";
-import { global_vars, display_obsidian } from "./global_vars";
+import settings from "../../settings";
+import { global_vars, display_obsidian } from "../global_vars";
 
 register("chat", ()=>{
     if (global_vars.area == "The End"){
