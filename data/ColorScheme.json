@@ -1009,7 +1009,7 @@
                 255,
                 80
             ],
-            "outlineSize": 0.5,
+            "outlineSize": 1,
             "roundness": 5
         },
         "line": {
