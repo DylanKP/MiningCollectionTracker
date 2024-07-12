@@ -4,6 +4,7 @@ import { getBazaarItems } from "./functions/other";
 import { global_vars } from "./functions/global_vars";
 
 const defaultConf = new DefaultConfig("MiningCollectionTracker", "./data/settings.json");
+const version = JSON.parse(FileLib.read("MiningCollectionTracker", "metadata.json")).version
 
 defaultConf
     .addSwitch({ 
@@ -252,7 +253,7 @@ defaultConf
         subcategory: "Formatting",
     });
 
-const config = new Settings("MiningCollectionTracker", defaultConf, "data/ColorScheme.json")
+const config = new Settings("MiningCollectionTracker", defaultConf, "data/ColorScheme.json", "Mining Collection Tracker v" + version)
     .setCommand("collection-tracker", ["ctrack"])
 
 config
