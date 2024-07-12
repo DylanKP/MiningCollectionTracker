@@ -22,7 +22,9 @@ function reset() {
 
 function on_tick() {
     let reset = false;
-    if (global_vars.reset == true) {
+    if (global_vars.reset == true) { 
+        // dont know if it would be an actual issue but this should prevent reset being triggered halfway 
+        // through the code and then only reseting some of the values
         reset = global_vars.reset;
         global_vars.reset = false;
     }
@@ -37,7 +39,7 @@ function on_tick() {
 
 
 
-    check_afk(reset, global_vars.area, additional_blocks_broken, 0, 0, 0, 0, 0, 0);
+    check_afk(reset, global_vars.timer_afk, global_vars.area, additional_blocks_broken, 0, 0, 0, 0, 0, 0);
     let time = timer();
     let obby_time = time[0];
     let gold_time = time[1];

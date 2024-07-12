@@ -1,4 +1,5 @@
-
+import settings from "../settings";
+import { global_vars } from "./global_vars";
 
 
 export const collection_timers = {
@@ -24,7 +25,7 @@ export function timer() {
             if (collection_timers[key].start_time !== null) {
                 collection_timers[key].previous_session_time = collection_timers[key].total_time;
                 collection_timers[key].start_time = null;
-                ChatLib.chat("&7[&bCollection Tracker&7] &r&f"+ key +" tracker AFK...")
+                ChatLib.chat("&7[&bCollection Tracker&7] &r&fIdle for "+afk_threshold+"s. "+ key +" tracker AFK...")
             }
         }
     }
@@ -39,16 +40,26 @@ export function timer() {
     ];
 }
 
-let afk_threshold = 7;
-export function check_afk(reset, in_end, blocks_broken, compact, gold_gain, quartz_gain, umber_gain, tungsten_gain, glacite_gain, mithril_gain) {
+let afk_threshold = 15;
+export function check_afk(reset, set_afk, in_end, blocks_broken, compact, gold_gain, quartz_gain, umber_gain, tungsten_gain, glacite_gain, mithril_gain) {
     if (reset) {
         for (let key in collection_timers) {
             collection_timers[key] = { start_time: null, total_time: 0, previous_session_time: 0, is_afk: true, afk_offset: null };
         }
         return;
     }
+    if (set_afk == true) {
+        for (let key in collection_timers) {
+            collection_timers[key].is_afk = true;
+        }
+        global_vars.timer_afk = false;
+        return;
+    }
 
-    if ((blocks_broken !== 0 || compact !== 0) && in_end === "The End") {
+    if (isNaN(settings().afk_threshold) === false) {
+        afk_threshold = settings().afk_threshold;
+    }
+    if ((blocks_broken !== 0 || compact !== 0) && in_end === "The End" && settings().tracker_obby_enable == true) {
         collection_timers.Obsidian.is_afk = false;
         collection_timers.Obsidian.afk_offset = collection_timers.Obsidian.total_time;
     }
@@ -57,8 +68,8 @@ export function check_afk(reset, in_end, blocks_broken, compact, gold_gain, quar
         if (
             collection_timers[key].is_afk === false &&
             collection_timers[key].afk_offset !== null &&
-            collection_timers[key].total_time - collection_timers[key].afk_offset > 15000 //settings().afk_threshold * 1000 &&
-            //settings().disable_afk === false
+            collection_timers[key].total_time - collection_timers[key].afk_offset > afk_threshold * 1000 &&
+            settings().disable_afk === false
         ) {
             collection_timers[key].is_afk = true;
         }

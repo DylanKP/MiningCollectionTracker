@@ -1,5 +1,6 @@
 import settings from "../../settings";
 import { global_vars, display_obsidian } from "../global_vars";
+import { collection_timers } from "../timer";
 
 register("chat", ()=>{
     if (global_vars.area == "The End"){
@@ -15,42 +16,46 @@ let total_obby = 0;
 let compact_count = 0;
 
 export function obby_calculate(reset, blocks, area, time, fortune) {
-    if (reset == true) {
-        total_blocks = 0;
-        total_obby = 0;
+    if (settings().tracker_obby_enable == true) {
+        if (reset == true) {
+            total_blocks = 0;
+            total_obby = 0;
+            compact_count = 0;
+            return;
+        }
+
+        if (area == "The End") {
+            total_blocks += blocks;
+            let obby = (blocks - compact_count) * fortune + (compact_count * 160);
+            total_obby += obby;
+        }
         compact_count = 0;
-        return;
+
+        let blocks_per_hour = total_blocks / (time / 3600000);
+        let obby_per_hour = total_obby / (time / 3600000);
+
+        let e_obby_net = total_obby / 160;
+        let e_obby_ph = obby_per_hour / 160;
+
+        let e_obby_profit_net = (e_obby_net * global_vars.e_obby_data).toFixed(0);
+        let e_obby_profit_ph = e_obby_ph * global_vars.e_obby_data;
+        let e_obby_profit_desired_net = (e_obby_net * settings().desired_e_price).toFixed(0);
+        let e_obby_profit_desired_ph = e_obby_ph * settings().desired_e_price;
+
+
+        let ovoid_net = total_obby / 5120;
+        let ovoid_ph = obby_per_hour / 5120;
+
+        let ovoid_profit_net = ((ovoid_net * global_vars.ovoid_data) - (ovoid_net * global_vars.null_sphere_data * 128)).toFixed(0);
+        let ovoid_profit_ph = ((ovoid_ph * global_vars.ovoid_data) - (ovoid_ph * global_vars.null_sphere_data * 128));
+        let ovoid_profit_desired_net = ((ovoid_net * settings().desired_o_price) - (ovoid_net * global_vars.null_sphere_data * 128)).toFixed(0);
+        let ovoid_profit_desired_ph = ((ovoid_ph * settings().desired_o_price) - (ovoid_ph * global_vars.null_sphere_data * 128));
+
+        format_obby(blocks_per_hour, obby_per_hour, e_obby_profit_net, e_obby_profit_ph, e_obby_profit_desired_net, e_obby_profit_desired_ph, ovoid_profit_net, ovoid_profit_ph, ovoid_profit_desired_net, ovoid_profit_desired_ph);
+        display_obsidian.runtime = format_time(time);
+    } else {
+        collection_timers.Obsidian.is_afk = true;
     }
-
-    if (area == "The End") {
-        total_blocks += blocks;
-        let obby = (blocks - compact_count) * fortune + (compact_count * 160);
-        total_obby += obby;
-    }
-    compact_count = 0;
-
-    let blocks_per_hour = total_blocks / (time / 3600000);
-    let obby_per_hour = total_obby / (time / 3600000);
-
-    let e_obby_net = total_obby / 160;
-    let e_obby_ph = obby_per_hour / 160;
-
-    let e_obby_profit_net = (e_obby_net * global_vars.e_obby_data).toFixed(0);
-    let e_obby_profit_ph = e_obby_ph * global_vars.e_obby_data;
-    let e_obby_profit_desired_net = (e_obby_net * settings().desired_e_price).toFixed(0);
-    let e_obby_profit_desired_ph = e_obby_ph * settings().desired_e_price;
-
-
-    let ovoid_net = total_obby / 5120;
-    let ovoid_ph = obby_per_hour / 5120;
-
-    let ovoid_profit_net = ((ovoid_net * global_vars.ovoid_data) - (ovoid_net * global_vars.null_sphere_data * 128)).toFixed(0);
-    let ovoid_profit_ph = ((ovoid_ph * global_vars.ovoid_data) - (ovoid_ph * global_vars.null_sphere_data * 128));
-    let ovoid_profit_desired_net = ((ovoid_net * settings().desired_o_price) - (ovoid_net * global_vars.null_sphere_data * 128)).toFixed(0);
-    let ovoid_profit_desired_ph = ((ovoid_ph * settings().desired_o_price) - (ovoid_ph * global_vars.null_sphere_data * 128));
-
-    format_obby(blocks_per_hour, obby_per_hour, e_obby_profit_net, e_obby_profit_ph, e_obby_profit_desired_net, e_obby_profit_desired_ph, ovoid_profit_net, ovoid_profit_ph, ovoid_profit_desired_net, ovoid_profit_desired_ph);
-    display_obsidian.runtime = format_time(time);
 }
 function format_obby(blocks_per_hour, obby_per_hour, e_obby_profit_net, e_obby_profit_ph, e_obby_profit_desired_net, e_obby_profit_desired_ph, ovoid_profit_net, ovoid_profit_ph, ovoid_profit_desired_net, ovoid_profit_desired_ph) {
     let format_blocks = settings().format_blocks_m;

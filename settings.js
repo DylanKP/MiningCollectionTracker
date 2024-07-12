@@ -2,7 +2,6 @@ import Settings from "../Amaterasu/core/Settings"
 import DefaultConfig from "../Amaterasu/core/DefaultConfig"
 import { getBazaarItems } from "./functions/other";
 import { global_vars } from "./functions/global_vars";
-import { collection_timers } from "./functions/timer";
 
 const defaultConf = new DefaultConfig("MiningCollectionTracker", "./data/settings.json");
 
@@ -12,72 +11,48 @@ defaultConf
         configName: "tracker_pet_enable",
         title: "Enable Pet Tracker",
         description: "Enables the pet tracker to track pet xp and levels.",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     })
     .addSwitch({ 
         category: "Trackers",
         configName: "tracker_obby_enable",
         title: "Enable Obsidian Tracker",
         description: "Enables the obsidian tracker to track obsidian collection and profits.",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     })
     .addSwitch({ 
         category: "Trackers",
         configName: "tracker_gold_enable",
         title: "Enable Gold Tracker",
         description: "Enables the gold tracker to track gold collection and profits.",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     })
     .addSwitch({ 
         category: "Trackers",
         configName: "tracker_quartz_enable",
         title: "Enable Quartz Tracker",
         description: "Enables the quartz tracker to track quartz collection and profits.",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     })
     .addSwitch({ 
         category: "Trackers",
         configName: "tracker_umber_enable",
         title: "Enable Umber Tracker",
         description: "Enables the umber tracker to track umber collection and profits.",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     })
     .addSwitch({ 
         category: "Trackers",
         configName: "tracker_tungsten_enable",
         title: "Enable Tungsten Tracker",
         description: "Enables the tungsten tracker to track tungsten collection and profits.",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     })
     .addSwitch({ 
         category: "Trackers",
         configName: "tracker_glacite_enable",
         title: "Enable Glacite Tracker",
         description: "Enables the glacite tracker to track glacite collection and profits.",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     })
     .addSwitch({ 
         category: "Trackers",
         configName: "tracker_mithril_enable",
         title: "Enable Mithril Tracker",
         description: "Enables the mithril tracker to track mithril collection and profits.",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     })
 
 
@@ -102,15 +77,8 @@ defaultConf
         subcategory: "QOL",
         tags: ["afk"],
         onClick(setting) {
-            collection_timers.Obsidian.is_afk = true;
-            collection_timers.Gold.is_afk = true;
-            collection_timers.Quartz.is_afk = true;
-            collection_timers.Umber.is_afk = true;
-            collection_timers.Tungsten.is_afk = true;
-            collection_timers.Glacite.is_afk = true;
-            collection_timers.Mithril.is_afk = true;
+            global_vars.timer_afk = true;
             global_vars.pet_afk = true;
-            ChatLib.chat("&7[&bCollection Tracker&7] &r&fAll trackers afk...")
         }
     })
     .addSwitch({ 
@@ -119,8 +87,6 @@ defaultConf
         title: "Disable AFK Mode",
         description: "Disables the calculator from going into AFK mode after a certain amount of inactivity.",
         subcategory: "AFK",
-        registerListener(previousvalue, newvalue) {
-        }
     })
     .addTextInput({ 
         category: "Util",
@@ -130,9 +96,6 @@ defaultConf
         subcategory: "AFK",
         value: "15",
         placeHolder: "15",
-        registerListener(previousvalue, newvalue) {
-
-        }
     })
     .addButton({ 
         category: "Util",
@@ -161,9 +124,6 @@ defaultConf
         title: "Enable Pet Display",
         description: "Displays pet xp gained and pet xp per hour.",
         subcategory: "Display",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     })
     .addSwitch({
         category: "Pet",
@@ -171,9 +131,6 @@ defaultConf
         title: "Enable Pet Display",
         description: "Displays time to next nevel and max level.",
         subcategory: "Display",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     })
     .addSwitch({
         category: "Pet",
@@ -181,9 +138,6 @@ defaultConf
         title: "Enable Pet Profit",
         description: "Displays the amount of net pet profit made and profit per hour. -- Not implemented yet --",
         subcategory: "Display",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     })
     .addSwitch({
         category: "Pet",
@@ -191,9 +145,6 @@ defaultConf
         title: "Format Pet Xp Per Hour",
         description: "Toggles the formatting of pet xp gained per hour to millions.",
         subcategory: "Formatting",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     })
     .addSwitch({
         category: "Pet",
@@ -201,9 +152,6 @@ defaultConf
         title: "Pet Level Seconds Toggle",
         description: "Formats the pet level time into displaying seconds.",
         subcategory: "Formatting",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     })
     .addSwitch({
         category: "Pet",
@@ -211,9 +159,6 @@ defaultConf
         title: "Format Profits Per Hour",
         description: "Toggles the formatting of pet net profits and profits per hour to millions.",
         subcategory: "Formatting",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     })
 
 
@@ -224,9 +169,6 @@ defaultConf
         title: "Enable Block Display",
         description: "Displays the amount of blocks broken and aprox. blocks broken in an hour in the GUI.",
         subcategory: "Display",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     })
     .addSwitch({
         category: "Obsidian",
@@ -234,9 +176,6 @@ defaultConf
         title: "Enable Obsidian Display",
         description: "Displays the amount of blocks obsidian collected and aprox. obsidian collected in an hour in the GUI.",
         subcategory: "Display",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     })
     .addSwitch({
         category: "Obsidian",
@@ -244,9 +183,6 @@ defaultConf
         title: "Enable Time Display",
         description: "Displays the runtime of the obby calculator and average cycle time.",
         subcategory: "Display",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     })
     .addSwitch({
         category: "Obsidian",
@@ -254,9 +190,6 @@ defaultConf
         title: "Enable E-Obby Profit Display",
         description: "Displays the amount of net enchanted obsidian profit made and profit per hour",
         subcategory: "Display",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     })
     .addSwitch({
         category: "Obsidian",
@@ -264,9 +197,6 @@ defaultConf
         title: "Enable Ovoid Profit Display",
         description: "Displays the amount of net ovoid profit made and profit per hour",
         subcategory: "Display",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     })
     .addTextInput({
         category: "Obsidian",
@@ -276,9 +206,6 @@ defaultConf
         subcategory: "Desired Rates",
         value: "4000",
         placeHolder: "4000",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     })
     .addSwitch({
         category: "Obsidian",
@@ -286,9 +213,6 @@ defaultConf
         title: "Enable Desired E-Obby Profit Display",
         description: "Displays the amount of net enchanted obsidian profit made and profit per hour if you were selling at a set price.",
         subcategory: "Desired Rates",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     })
     .addTextInput({
         category: "Obsidian",
@@ -298,9 +222,6 @@ defaultConf
         subcategory: "Desired Rates",
         value: "130000",
         placeHolder: "130000",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     })
     .addSwitch({
         category: "Obsidian",
@@ -308,9 +229,6 @@ defaultConf
         title: "Enable Desired Ovoid Profit Display",
         description: "Displays the amount of net ovoid profit made and profit per hour if you were selling at a set price.",
         subcategory: "Desired Rates",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     })
     .addSwitch({
         category: "Obsidian",
@@ -318,9 +236,6 @@ defaultConf
         title: "Format Blocks Broken",
         description: "Toggles the formatting of blocks broken to millions.",
         subcategory: "Formatting",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     })
     .addSwitch({
         category: "Obsidian",
@@ -328,9 +243,6 @@ defaultConf
         title: "Format Obby Collected",
         description: "Toggles the formatting of the obby collection to millions.",
         subcategory: "Formatting",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     })
     .addSwitch({
         category: "Obsidian",
@@ -338,9 +250,6 @@ defaultConf
         title: "Format Profits Per Hour",
         description: "Toggles the formatting of obsidian net profits and profits per hour to millions.",
         subcategory: "Formatting",
-        registerListener(previousvalue, newvalue) {
-            
-        }
     });
 
 const config = new Settings("MiningCollectionTracker", defaultConf, "data/ColorScheme.json")

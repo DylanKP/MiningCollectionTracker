@@ -58,12 +58,12 @@
             {
                 "type": 6,
                 "name": "disable_afk",
-                "value": true
+                "value": false
             },
             {
                 "type": 4,
                 "name": "afk_threshold",
-                "value": "15"
+                "value": "5"
             },
             {
                 "type": 2,
@@ -102,7 +102,7 @@
             {
                 "type": 6,
                 "name": "lvl_seconds_enable",
-                "value": true
+                "value": false
             },
             {
                 "type": 6,

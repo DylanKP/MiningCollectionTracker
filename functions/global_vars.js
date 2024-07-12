@@ -3,6 +3,7 @@ export const global_vars = {
 
     area: null,
 
+    timer_afk: false,
     pet_afk: true,
 
     e_obby_data: 1,
