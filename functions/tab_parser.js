@@ -94,11 +94,11 @@ export function get_pet_data(data) {
 
 function getRarityFromColorCode(colorCode) {
     switch(colorCode) {
-        case '§f': return "common";
-        case '§a': return "uncommon";
-        case '§9': return "rare";
-        case '§5': return "epic";
-        case '§6': return "legendary";
-        case '§d': return "legendary";
+        case '§f': return "COMMON";
+        case '§a': return "UNCOMMON";
+        case '§9': return "RARE";
+        case '§5': return "EPIC";
+        case '§6': return "LEGENDARY";
+        case '§d': return "LEGENDARY";
     }
 };

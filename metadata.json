@@ -2,9 +2,11 @@
     "name": "MiningCollectionTracker",
     "creator": "DylPug",
     "description": "A mining collection tracker for Hypixel Skyblock.",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "entry": "index.js", 
     "requires": [
         "Amaterasu", 
-        "Draggable"]
+        "Draggable",
+        "requestV2",
+        "PromiseV2"]
 }

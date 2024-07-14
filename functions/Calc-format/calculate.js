@@ -37,19 +37,37 @@ export function obby_calculate(reset, blocks, area, time, fortune) {
         let e_obby_net = total_obby / 160;
         let e_obby_ph = obby_per_hour / 160;
 
-        let e_obby_profit_net = (e_obby_net * global_vars.e_obby_data).toFixed(0);
+        let e_obby_profit_net = (e_obby_net * global_vars.e_obby_data);
         let e_obby_profit_ph = e_obby_ph * global_vars.e_obby_data;
-        let e_obby_profit_desired_net = (e_obby_net * settings().desired_e_price).toFixed(0);
+        let e_obby_profit_desired_net = (e_obby_net * settings().desired_e_price);
         let e_obby_profit_desired_ph = e_obby_ph * settings().desired_e_price;
 
 
         let ovoid_net = total_obby / 5120;
         let ovoid_ph = obby_per_hour / 5120;
 
-        let ovoid_profit_net = ((ovoid_net * global_vars.ovoid_data) - (ovoid_net * global_vars.null_sphere_data * 128)).toFixed(0);
+        let ovoid_profit_net = ((ovoid_net * global_vars.ovoid_data) - (ovoid_net * global_vars.null_sphere_data * 128));
         let ovoid_profit_ph = ((ovoid_ph * global_vars.ovoid_data) - (ovoid_ph * global_vars.null_sphere_data * 128));
-        let ovoid_profit_desired_net = ((ovoid_net * settings().desired_o_price) - (ovoid_net * global_vars.null_sphere_data * 128)).toFixed(0);
+        let ovoid_profit_desired_net = ((ovoid_net * settings().desired_o_price) - (ovoid_net * global_vars.null_sphere_data * 128));
         let ovoid_profit_desired_ph = ((ovoid_ph * settings().desired_o_price) - (ovoid_ph * global_vars.null_sphere_data * 128));
+
+        if (settings().integrate_profit == true) {
+            e_obby_profit_net = (e_obby_profit_net + global_vars.total_pet_pofit).toFixed(0);
+            e_obby_profit_ph += global_vars.pet_profit_ph;
+            e_obby_profit_desired_net = (e_obby_profit_desired_net + global_vars.total_pet_pofit).toFixed(0);
+            e_obby_profit_desired_ph += global_vars.pet_profit_ph;
+
+            ovoid_profit_net = (ovoid_profit_net + global_vars.total_pet_pofit).toFixed(0);
+            ovoid_profit_ph += global_vars.pet_profit_ph;
+            ovoid_profit_desired_net = (ovoid_profit_desired_net + global_vars.total_pet_pofit).toFixed(0);
+            ovoid_profit_desired_ph += global_vars.pet_profit_ph;
+        } else {
+            e_obby_profit_net = e_obby_profit_net.toFixed(0);
+            e_obby_profit_desired_net = e_obby_profit_desired_net.toFixed(0);
+
+            ovoid_profit_net = ovoid_profit_net.toFixed(0);
+            ovoid_profit_desired_net = ovoid_profit_desired_net.toFixed(0);
+        }
 
         format_obby(blocks_per_hour, obby_per_hour, e_obby_profit_net, e_obby_profit_ph, e_obby_profit_desired_net, e_obby_profit_desired_ph, ovoid_profit_net, ovoid_profit_ph, ovoid_profit_desired_net, ovoid_profit_desired_ph);
         display_obsidian.runtime = format_time(time);

@@ -41,14 +41,14 @@ export function timer() {
 }
 
 let afk_threshold = 15;
-export function check_afk(reset, set_afk, in_end, blocks_broken, compact, gold_gain, quartz_gain, umber_gain, tungsten_gain, glacite_gain, mithril_gain) {
+export function check_afk(reset, blocks_broken, compact, gold_gain, quartz_gain, umber_gain, tungsten_gain, glacite_gain, mithril_gain) {
     if (reset) {
         for (let key in collection_timers) {
             collection_timers[key] = { start_time: null, total_time: 0, previous_session_time: 0, is_afk: true, afk_offset: null };
         }
         return;
     }
-    if (set_afk == true) {
+    if (global_vars.timer_afk == true) {
         for (let key in collection_timers) {
             collection_timers[key].is_afk = true;
         }
@@ -56,10 +56,10 @@ export function check_afk(reset, set_afk, in_end, blocks_broken, compact, gold_g
         return;
     }
 
-    if (isNaN(settings().afk_threshold) === false) {
+    if (isNaN(settings().afk_threshold) === false && settings().afk_threshold > 0) {
         afk_threshold = settings().afk_threshold;
     }
-    if ((blocks_broken !== 0 || compact !== 0) && in_end === "The End" && settings().tracker_obby_enable == true) {
+    if ((blocks_broken !== 0 || compact !== 0) && global_vars.area === "The End" && settings().tracker_obby_enable == true) {
         collection_timers.Obsidian.is_afk = false;
         collection_timers.Obsidian.afk_offset = collection_timers.Obsidian.total_time;
     }

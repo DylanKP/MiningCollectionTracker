@@ -7,57 +7,6 @@ const defaultConf = new DefaultConfig("MiningCollectionTracker", "./data/setting
 const version = JSON.parse(FileLib.read("MiningCollectionTracker", "metadata.json")).version
 
 defaultConf
-    .addSwitch({ 
-        category: "Trackers",
-        configName: "tracker_pet_enable",
-        title: "Enable Pet Tracker",
-        description: "Enables the pet tracker to track pet xp and levels.",
-    })
-    .addSwitch({ 
-        category: "Trackers",
-        configName: "tracker_obby_enable",
-        title: "Enable Obsidian Tracker",
-        description: "Enables the obsidian tracker to track obsidian collection and profits.",
-    })
-    .addSwitch({ 
-        category: "Trackers",
-        configName: "tracker_gold_enable",
-        title: "Enable Gold Tracker",
-        description: "Enables the gold tracker to track gold collection and profits.",
-    })
-    .addSwitch({ 
-        category: "Trackers",
-        configName: "tracker_quartz_enable",
-        title: "Enable Quartz Tracker",
-        description: "Enables the quartz tracker to track quartz collection and profits.",
-    })
-    .addSwitch({ 
-        category: "Trackers",
-        configName: "tracker_umber_enable",
-        title: "Enable Umber Tracker",
-        description: "Enables the umber tracker to track umber collection and profits.",
-    })
-    .addSwitch({ 
-        category: "Trackers",
-        configName: "tracker_tungsten_enable",
-        title: "Enable Tungsten Tracker",
-        description: "Enables the tungsten tracker to track tungsten collection and profits.",
-    })
-    .addSwitch({ 
-        category: "Trackers",
-        configName: "tracker_glacite_enable",
-        title: "Enable Glacite Tracker",
-        description: "Enables the glacite tracker to track glacite collection and profits.",
-    })
-    .addSwitch({ 
-        category: "Trackers",
-        configName: "tracker_mithril_enable",
-        title: "Enable Mithril Tracker",
-        description: "Enables the mithril tracker to track mithril collection and profits.",
-    })
-
-
-
     .addButton({
         category: "Util",
         configName: "reset",
@@ -65,7 +14,7 @@ defaultConf
         description: "Resets the collection tracker to initial values. Or just use /retrack in chat. -- not implemented yet --",
         subcategory: "QOL",
         tags: ["reset"],
-        onClick(setting) {
+        onClick() {
             global_vars.reset = true;
             ChatLib.chat("&7[&bCollection Tracker&7] &r&fResetting Collection Tracker...")
         }
@@ -77,7 +26,7 @@ defaultConf
         description: "Temporarily sends the calculator into afk status, stopping all calculations and tracking.",
         subcategory: "QOL",
         tags: ["afk"],
-        onClick(setting) {
+        onClick() {
             global_vars.timer_afk = true;
             global_vars.pet_afk = true;
         }
@@ -105,9 +54,18 @@ defaultConf
         description: "Updates bazaar immediately.",
         subcategory: "Bazaar",
         tags: ["bazaar"],
-        onClick(setting) {
+        onClick() {
             getBazaarItems();
         }
+    })
+    .addSlider({
+        category: "Util",
+        configName: "bazaar_update_rate",
+        title: "Bazaar Update Rate",
+        description: "How often in minutes should the bazaar data be updated.",
+        subcategory: "Bazaar",
+        options: [1, 180],
+        value: 60
     })
     .addSwitch({
         category: "Util",
@@ -119,6 +77,36 @@ defaultConf
 
 
 
+    .addSwitch({ 
+        category: "Pet",
+        configName: "tracker_pet_enable",
+        title: "Enable Pet Tracker",
+        description: "Enables the pet tracker to track pet xp and levels.",
+        subcategory: "Tracker",
+    })
+    .addButton({ 
+        category: "Pet",
+        configName: "move_pet_gui",
+        title: "Move Pet GUI",
+        description: "Moves the pet GUI to a new location.",
+        subcategory: "GUI",
+        tags: ["GUI"],
+        onClick(setting) {
+            Client.currentGui.close();
+            global_vars.move_pet = true;
+        }
+    })
+    .addButton({ 
+        category: "Pet",
+        configName: "get_pet_profit",
+        title: "Get New Pet Profit",
+        description: "Gets the new pet profit if pet profit is not accurate.",
+        subcategory: "Profit",
+        tags: ["Profit"],
+        onClick(setting) {
+            global_vars.get_new_pet_profit = true;
+        }
+    })
     .addSwitch({
         category: "Pet",
         configName: "display_pet_xp",
@@ -137,7 +125,14 @@ defaultConf
         category: "Pet",
         configName: "display_pet_profit",
         title: "Enable Pet Profit",
-        description: "Displays the amount of net pet profit made and profit per hour. -- Not implemented yet --",
+        description: "Displays pet profit.",
+        subcategory: "Display",
+    })
+    .addSwitch({
+        category: "Pet",
+        configName: "integrate_profit",
+        title: "Integrate Pet Profit",
+        description: "Integrates the pet profit into the other profit displays instead of being separate.",
         subcategory: "Display",
     })
     .addSwitch({
@@ -158,12 +153,32 @@ defaultConf
         category: "Pet",
         configName: "format_pet_profit_m",
         title: "Format Profits Per Hour",
-        description: "Toggles the formatting of pet net profits and profits per hour to millions.",
+        description: "Toggles the formatting of pet net profitsto millions.",
         subcategory: "Formatting",
     })
+    
 
 
 
+    .addSwitch({ 
+        category: "Obsidian",
+        configName: "tracker_obby_enable",
+        title: "Enable Obsidian Tracker",
+        description: "Enables the obsidian tracker to track obsidian collection and profits.",
+        subcategory: "Tracker",
+    })
+    .addButton({ 
+        category: "Obsidian",
+        configName: "move_obby_gui",
+        title: "Move Obsidian GUI",
+        description: "Moves the obsidian GUI to a new location.",
+        subcategory: "GUI",
+        tags: ["GUI"],
+        onClick(setting) {
+            Client.currentGui.close();
+            global_vars.move_obby = true;
+        }
+    })
     .addSwitch({
         category: "Obsidian",
         configName: "display_obby_block",
@@ -251,6 +266,49 @@ defaultConf
         title: "Format Profits Per Hour",
         description: "Toggles the formatting of obsidian net profits and profits per hour to millions.",
         subcategory: "Formatting",
+    })
+
+    .addSwitch({ 
+        category: "Gold",
+        configName: "tracker_gold_enable",
+        title: "Enable Gold Tracker",
+        description: "Enables the gold tracker to track gold collection and profits.",
+        subcategory: "Tracker",
+    })
+    .addSwitch({ 
+        category: "Quartz",
+        configName: "tracker_quartz_enable",
+        title: "Enable Quartz Tracker",
+        description: "Enables the quartz tracker to track quartz collection and profits.",
+        subcategory: "Tracker",
+    })
+    .addSwitch({ 
+        category: "Umber",
+        configName: "tracker_umber_enable",
+        title: "Enable Umber Tracker",
+        description: "Enables the umber tracker to track umber collection and profits.",
+        subcategory: "Tracker",
+    })
+    .addSwitch({ 
+        category: "Tungsten",
+        configName: "tracker_tungsten_enable",
+        title: "Enable Tungsten Tracker",
+        description: "Enables the tungsten tracker to track tungsten collection and profits.",
+        subcategory: "Tracker",
+    })
+    .addSwitch({ 
+        category: "Glacite",
+        configName: "tracker_glacite_enable",
+        title: "Enable Glacite Tracker",
+        description: "Enables the glacite tracker to track glacite collection and profits.",
+        subcategory: "Tracker",
+    })
+    .addSwitch({ 
+        category: "Mithril",
+        configName: "tracker_mithril_enable",
+        title: "Enable Mithril Tracker",
+        description: "Enables the mithril tracker to track mithril collection and profits.",
+        subcategory: "Tracker",
     });
 
 const config = new Settings("MiningCollectionTracker", defaultConf, "data/ColorScheme.json", "Mining Collection Tracker v" + version)

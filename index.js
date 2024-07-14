@@ -1,19 +1,29 @@
 import { drill_tracker } from "./functions/drill_tracker";
-import { global_vars, display_obsidian } from "./functions/global_vars";
-import { getBazaarItems } from "./functions/other";
+import { global_vars } from "./functions/global_vars";
+import { getBazaarItems, getPetprofit } from "./functions/other";
 import { get_area, get_fortune, get_pet_data } from "./functions/tab_parser"; 
 import { check_afk, timer } from "./functions/timer";
 import { pet_calculate } from "./functions/Calc-format/pet_tracker";
 import { obby_calculate } from "./functions/Calc-format/calculate"; 
 import { build_obby_gui } from "./functions/build_gui";
+import settings from "./settings";
 
 
 register("tick", on_tick);
 register("command", reset).setCommandName("retrack");
-register("command", test).setCommandName("test");
 register("renderOverlay", build_obby_gui);
+register("step", () => {
+    minutes++;
+
+    if (minutes >= settings().bazaar_update_rate) {
+        minutes = 0;
+        getBazaarItems();
+    }
+}).setDelay(60)
 
 getBazaarItems();
+
+let minutes = 0;
 
 function reset() {
     global_vars.reset = true;
@@ -39,7 +49,7 @@ function on_tick() {
 
 
 
-    check_afk(reset, global_vars.timer_afk, global_vars.area, additional_blocks_broken, 0, 0, 0, 0, 0, 0);
+    check_afk(reset, additional_blocks_broken, 0, 0, 0, 0, 0, 0);
     let time = timer();
     let obby_time = time[0];
     let gold_time = time[1];
@@ -52,12 +62,6 @@ function on_tick() {
     
     pet_calculate(pet_data[0], pet_data[1], pet_data[2], pet_data[3], reset);
     obby_calculate(reset, additional_blocks_broken, global_vars.area, obby_time, fortune);
-}
-
-function test() {
-    for (let key in display_obsidian) {
-        ChatLib.chat(key + ": " + display_obsidian[key]);
-    }
 }
 
 ChatLib.chat("&7[&bCollection Tracker&7] &r&fFully loaded! Use &b/ctrack &fto open the tracker gui.");

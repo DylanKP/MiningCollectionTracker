@@ -1,50 +1,5 @@
 [
     {
-        "category": "Trackers",
-        "settings": [
-            {
-                "type": 6,
-                "name": "tracker_pet_enable",
-                "value": true
-            },
-            {
-                "type": 6,
-                "name": "tracker_obby_enable",
-                "value": true
-            },
-            {
-                "type": 6,
-                "name": "tracker_gold_enable",
-                "value": true
-            },
-            {
-                "type": 6,
-                "name": "tracker_quartz_enable",
-                "value": true
-            },
-            {
-                "type": 6,
-                "name": "tracker_umber_enable",
-                "value": true
-            },
-            {
-                "type": 6,
-                "name": "tracker_tungsten_enable",
-                "value": true
-            },
-            {
-                "type": 6,
-                "name": "tracker_glacite_enable",
-                "value": true
-            },
-            {
-                "type": 6,
-                "name": "tracker_mithril_enable",
-                "value": true
-            }
-        ]
-    },
-    {
         "category": "Util",
         "settings": [
             {
@@ -63,11 +18,16 @@
             {
                 "type": 4,
                 "name": "afk_threshold",
-                "value": "5"
+                "value": "15"
             },
             {
                 "type": 2,
                 "name": "update_bazaar"
+            },
+            {
+                "type": 1,
+                "name": "bazaar_update_rate",
+                "value": 60
             },
             {
                 "type": 6,
@@ -81,6 +41,19 @@
         "settings": [
             {
                 "type": 6,
+                "name": "tracker_pet_enable",
+                "value": true
+            },
+            {
+                "type": 2,
+                "name": "move_pet_gui"
+            },
+            {
+                "type": 2,
+                "name": "get_pet_profit"
+            },
+            {
+                "type": 6,
                 "name": "display_pet_xp",
                 "value": true
             },
@@ -92,7 +65,12 @@
             {
                 "type": 6,
                 "name": "display_pet_profit",
-                "value": false
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "integrate_profit",
+                "value": true
             },
             {
                 "type": 6,
@@ -107,13 +85,22 @@
             {
                 "type": 6,
                 "name": "format_pet_profit_m",
-                "value": false
+                "value": true
             }
         ]
     },
     {
         "category": "Obsidian",
         "settings": [
+            {
+                "type": 6,
+                "name": "tracker_obby_enable",
+                "value": true
+            },
+            {
+                "type": 2,
+                "name": "move_obby_gui"
+            },
             {
                 "type": 6,
                 "name": "display_obby_block",
@@ -172,7 +159,67 @@
             {
                 "type": 6,
                 "name": "format_obby_profit_m",
-                "value": true
+                "value": false
+            }
+        ]
+    },
+    {
+        "category": "Gold",
+        "settings": [
+            {
+                "type": 6,
+                "name": "tracker_gold_enable",
+                "value": false
+            }
+        ]
+    },
+    {
+        "category": "Quartz",
+        "settings": [
+            {
+                "type": 6,
+                "name": "tracker_quartz_enable",
+                "value": false
+            }
+        ]
+    },
+    {
+        "category": "Umber",
+        "settings": [
+            {
+                "type": 6,
+                "name": "tracker_umber_enable",
+                "value": false
+            }
+        ]
+    },
+    {
+        "category": "Tungsten",
+        "settings": [
+            {
+                "type": 6,
+                "name": "tracker_tungsten_enable",
+                "value": false
+            }
+        ]
+    },
+    {
+        "category": "Glacite",
+        "settings": [
+            {
+                "type": 6,
+                "name": "tracker_glacite_enable",
+                "value": false
+            }
+        ]
+    },
+    {
+        "category": "Mithril",
+        "settings": [
+            {
+                "type": 6,
+                "name": "tracker_mithril_enable",
+                "value": false
             }
         ]
     }

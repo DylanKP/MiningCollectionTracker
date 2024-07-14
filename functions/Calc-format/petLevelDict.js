@@ -625,10 +625,10 @@ export function sumlevel(start, end, tier) {
 }
 function getRarity(colorCode) {
     switch(colorCode) {
-        case "common": return common_dict;
-        case "uncommon": return uncommon_dict;
-        case "rare": return rare_dict;
-        case "epic": return epic_dict;
-        case "legendary": return legendary_dict;
+        case "COMMON": return common_dict;
+        case "UNCOMMON": return uncommon_dict;
+        case "RARE": return rare_dict;
+        case "EPIC": return epic_dict;
+        case "LEGENDARY": return legendary_dict;
     }
 };

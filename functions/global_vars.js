@@ -5,6 +5,12 @@ export const global_vars = {
 
     timer_afk: false,
     pet_afk: true,
+    get_new_pet_profit: true,
+    pet_profit_ph: 0,
+    total_pet_pofit: 0,
+
+    move_pet: false,
+    move_obby: false,
 
     e_obby_data: 1,
     ovoid_data: 1,
@@ -31,6 +37,9 @@ export const display_pet_data = {
     display_max_lvl_time: "",
     display_pet_xp_ph: 0,
     display_total_xp: 0,
+    display_pet_profit: 0,
+    display_pet_profit_ph: 0,
+    display_pet_profit_net: 0,
 }
 
 export const display_obsidian = {

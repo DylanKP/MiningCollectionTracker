@@ -11,6 +11,18 @@ makeObjectDraggable("Obby Tracker", display_obby, () => obby_gui.isOpen());
 makeObjectDraggable("Pet Tracker", display_pet, () => pet_gui.isOpen());
 register("command", () => {obby_gui.open()}).setName("obbygui");
 register("command", () => {pet_gui.open()}).setName("petgui");
+register("tick", move_gui);
+
+
+function move_gui() {
+    if (global_vars.move_pet == true) {
+        global_vars.move_pet = false;
+        pet_gui.open()
+    } else if (global_vars.move_obby == true) {
+        global_vars.move_obby = false;
+        obby_gui.open()
+    }
+}
 
 
 export function build_obby_gui() {
@@ -82,6 +94,15 @@ export function build_obby_gui() {
             if (display_pet_data.display_max_lvl_time != 0){
                 pet_lines.push("Time to lvl 200: " + display_pet_data.display_max_lvl_time);
             }
+            pet_lines.push("");
+        }
+
+        if (settings().display_pet_profit == true || pet_gui.isOpen()) {
+            pet_lines.push("Profit Per Pet: " + display_pet_data.display_pet_profit);
+            if (settings().integrate_profit == false) {
+                pet_lines.push("Profit Per Pet p/h: " + display_pet_data.display_pet_profit_ph);
+                pet_lines.push("Net Profit Per Pet: " + display_pet_data.display_pet_profit_net);
+            }
         }
 
         if (global_vars.pet_widget_alert == true && settings().hide_widget_alerts == false) {
@@ -89,7 +110,6 @@ export function build_obby_gui() {
         }
     }
     display_obby.setString(obby_lines.join("\n"));
-    //display_obby.setString("test");
     display_obby.draw();
 
     display_pet.setString(pet_lines.join("\n"));
