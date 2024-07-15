@@ -7,6 +7,5 @@
     "requires": [
         "Amaterasu", 
         "Draggable",
-        "requestV2",
-        "PromiseV2"]
+        "requestV2"]
 }

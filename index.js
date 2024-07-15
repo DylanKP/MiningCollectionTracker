@@ -1,6 +1,6 @@
 import { drill_tracker } from "./functions/drill_tracker";
 import { global_vars } from "./functions/global_vars";
-import { getBazaarItems, getPetprofit } from "./functions/other";
+import { getBazaarItems } from "./functions/other";
 import { get_area, get_fortune, get_pet_data } from "./functions/tab_parser"; 
 import { check_afk, timer } from "./functions/timer";
 import { pet_calculate } from "./functions/Calc-format/pet_tracker";
