@@ -9,9 +9,16 @@ import { build_obby_gui } from "./functions/build_gui";
 import settings from "./settings";
 
 
-register("tick", on_tick);
-register("command", reset).setCommandName("retrack");
 register("renderOverlay", build_obby_gui);
+register("tick", on_tick);
+
+register("command", () => {
+    global_vars.reset = true;
+    ChatLib.chat("&7[&bCollection Tracker&7] &r&fResetting Collection Tracker...");
+}).setCommandName("retrack");
+
+
+let minutes = 0;
 register("step", () => {
     minutes++;
 
@@ -21,14 +28,11 @@ register("step", () => {
     }
 }).setDelay(60)
 
+
+
 getBazaarItems();
 
-let minutes = 0;
 
-function reset() {
-    global_vars.reset = true;
-    ChatLib.chat("&7[&bCollection Tracker&7] &r&fResetting Collection Tracker...");
-}
 
 function on_tick() {
     let reset = false;
@@ -42,11 +46,9 @@ function on_tick() {
     let additional_blocks_broken = drill_tracker();
 
     let tab_data = TabList.getNames();
-
     global_vars.area = get_area(tab_data);    
     let fortune = get_fortune(tab_data);
     let pet_data = get_pet_data(tab_data);
-
 
 
     check_afk(reset, additional_blocks_broken, 0, 0, 0, 0, 0, 0);
@@ -59,7 +61,6 @@ function on_tick() {
     let glacite_time = time[5];
     let mithril_time = time[6];
 
-    
     pet_calculate(pet_data[0], pet_data[1], pet_data[2], pet_data[3], reset);
     obby_calculate(reset, additional_blocks_broken, global_vars.area, obby_time, fortune);
 }

@@ -5,7 +5,7 @@ export const global_vars = {
 
     timer_afk: false,
     pet_afk: true,
-    get_new_pet_profit: true,
+    get_new_pet_profit: false,
     pet_profit_ph: 0,
     total_pet_pofit: 0,
 
@@ -51,9 +51,9 @@ export const display_obsidian = {
     e_profit_ph: 0, 
     o_profit_net: 0, 
     o_profit_ph: 0,
-    e_desired_profit_net: 0,
-    e_desired_profit_ph: 0,
-    o_desired_profit_net: 0,
-    o_desired_profit_ph: 0,
+    // e_desired_profit_net: 0, ///////
+    // e_desired_profit_ph: 0, ///////
+    // o_desired_profit_net: 0, ///////
+    // o_desired_profit_ph: 0, ///////
     runtime: "0s",
 };

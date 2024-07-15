@@ -211,15 +211,15 @@
     "Switch": {
         "background": {
             "enabledColor": [
+                0,
                 255,
-                255,
-                255,
+                0,
                 80
             ],
             "disabledColor": [
-                175,
-                175,
-                175,
+                255,
+                0,
+                0,
                 80
             ],
             "outlineColor": [
@@ -1001,7 +1001,7 @@
                 0,
                 0,
                 0,
-                80
+                200
             ],
             "outlineColor": [
                 255,
@@ -1010,7 +1010,7 @@
                 80
             ],
             "outlineSize": 1,
-            "roundness": 5
+            "roundness": 0
         },
         "line": {
             "color": [
@@ -1048,7 +1048,7 @@
                 255,
                 255,
                 255,
-                80
+                90
             ]
         },
         "title": {
@@ -1062,10 +1062,10 @@
         },
         "descriptionbackground": {
             "color": [
-                0,
-                0,
-                0,
-                80
+                20,
+                20,
+                20,
+                255
             ],
             "size": 0.5,
             "outlineColor": [

@@ -2,7 +2,6 @@ import settings from "../../settings";
 import { sumlevel } from "./petLevelDict";
 import { global_vars, display_pet_data } from "../global_vars";
 import { getPetprofit } from "../other";
-import { Promise } from 'PromiseV2';
 
 register("chat", chat_parser);
 
@@ -10,7 +9,7 @@ function chat_parser(event) {
     let message = ChatLib.getChatMessage(event);
     if(message.startsWith('You summoned your')){
         pet_data_reset = true;
-        global_vars.get_new_pet_profit = true;
+        get_pet_profit = true;
         ChatLib.chat("&7[&bCollection Tracker&7] &r&fPet data reset...")
     }
 };
@@ -29,10 +28,13 @@ let pet_afk_start = null;
 let pet_data_reset = false;
 let already_afk = true;
 
-let pet_profit = 0.0;
-let pet_exp_to_coin = 0.0;
+let pet_profit = 0;
+let pet_exp_to_coin = 0;
 
 let afk_threshold = 15;
+
+let first_pet = true;
+let get_pet_profit = true;
 
 export function pet_calculate(name, tier, lvl, exp, reset) {
     if (global_vars.pet_widget_alert === true) {
@@ -115,6 +117,8 @@ export function pet_calculate(name, tier, lvl, exp, reset) {
         global_vars.pet_afk = true;
         already_afk = true;
         pet_xp_gained = 0;
+        total_pet_xp = 0;
+        global_vars.total_pet_pofit = 0;
     }
 }
 
@@ -138,15 +142,20 @@ function set_initial_pet_data(name, tier, lvl, exp, reset) {
         pet_xp_gained = 0;
 
         pet_data_reset = false;
+        if (first_pet === true || get_pet_profit === true) {
+            first_pet = false;
+            get_pet_profit = false;
+            global_vars.get_new_pet_profit = true;
+        }
     }
     if (global_vars.get_new_pet_profit == true) {
         if (name === "Golden Dragon" || name === "Golden Dragon Egg") {
-            getPetprofit("Golden Dragon", "Golden Dragon Egg", "LEGENDARY", (net_profit) => {
+            getPetprofit("Golden Dragon", "LEGENDARY", (net_profit) => {
                 pet_profit = net_profit;
                 pet_exp_to_coin = pet_profit / sumlevel(1, 200, "LEGENDARY");
             });
         } else {
-            getPetprofit(name, name, tier, (net_profit) => {
+            getPetprofit(name, tier, (net_profit) => {
                 pet_profit = net_profit;
                 pet_exp_to_coin = pet_profit / sumlevel(1, 100, tier);
             });

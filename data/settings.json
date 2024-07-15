@@ -46,11 +46,11 @@
             },
             {
                 "type": 2,
-                "name": "move_pet_gui"
+                "name": "get_pet_profit"
             },
             {
                 "type": 2,
-                "name": "get_pet_profit"
+                "name": "move_pet_gui"
             },
             {
                 "type": 6,
@@ -127,26 +127,6 @@
                 "value": false
             },
             {
-                "type": 4,
-                "name": "desired_e_price",
-                "value": "4000"
-            },
-            {
-                "type": 6,
-                "name": "display_obby_profit_e_desired",
-                "value": false
-            },
-            {
-                "type": 4,
-                "name": "desired_o_price",
-                "value": "130000"
-            },
-            {
-                "type": 6,
-                "name": "display_obby_profit_o_desired",
-                "value": false
-            },
-            {
                 "type": 6,
                 "name": "format_blocks_m",
                 "value": false
@@ -159,7 +139,7 @@
             {
                 "type": 6,
                 "name": "format_obby_profit_m",
-                "value": false
+                "value": true
             }
         ]
     },

@@ -58,17 +58,6 @@ export function build_obby_gui() {
             obby_lines.push("");
         }
 
-        if (settings().display_obby_profit_e_desired == true || obby_gui.isOpen()) {
-            obby_lines.push("Desired E-Obby Profit p/h: " + display_obsidian.e_desired_profit_ph);
-            obby_lines.push("Desired Net E-Obby Profit: " + display_obsidian.e_desired_profit_net);
-            obby_lines.push("");
-        }
-
-        if (settings().display_obby_profit_o_desired == true || obby_gui.isOpen()) {
-            obby_lines.push("Desired Ovoid Profit p/h: " + display_obsidian.o_desired_profit_ph);
-            obby_lines.push("Desired Net Ovoid Profit: " + display_obsidian.o_desired_profit_net);
-        }
-
         if (global_vars.event_widget_alert == true && settings().hide_widget_alerts == false) {
             obby_lines.push("Event Widget Not Available. Check /tablist");
         }

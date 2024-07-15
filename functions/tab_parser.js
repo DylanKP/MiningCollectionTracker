@@ -59,7 +59,7 @@ export function get_fortune(data) {
 export function get_pet_data(data) {
     let processed_tab_data = data.map(a => a.removeFormatting());
     let pet_index = processed_tab_data.indexOf("Pet:");
-    if (pet_index !== -1) {
+    if (pet_index !== -1 && processed_tab_data[pet_index + 1].trim() !== "No pet selected") {
         global_vars.pet_widget_alert = false;
 
         let pet_lvl_name_tier = data[pet_index + 1];
@@ -88,7 +88,7 @@ export function get_pet_data(data) {
         return [pet_name, pet_tier, pet_lvl, pet_exp]
     } else {
         global_vars.pet_widget_alert = true;
-        return [null, "common", 2, 0];
+        return [null, null, null, null];
     }
 }
 

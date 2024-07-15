@@ -6,12 +6,13 @@ import { global_vars } from "./functions/global_vars";
 const defaultConf = new DefaultConfig("MiningCollectionTracker", "./data/settings.json");
 const version = JSON.parse(FileLib.read("MiningCollectionTracker", "metadata.json")).version
 
+
 defaultConf
     .addButton({
         category: "Util",
         configName: "reset",
         title: "Reset Collection Tracker",
-        description: "Resets the collection tracker to initial values. Or just use /retrack in chat. -- not implemented yet --",
+        description: "Resets the collection tracker to initial values. Or just use /retrack in chat.",
         subcategory: "QOL",
         tags: ["reset"],
         onClick() {
@@ -22,7 +23,7 @@ defaultConf
     .addButton({
         category: "Util",
         configName: "afk_obby",
-        title: "Stop Obsidian Calculator",
+        title: "Force AFK",
         description: "Temporarily sends the calculator into afk status, stopping all calculations and tracking.",
         subcategory: "QOL",
         tags: ["afk"],
@@ -86,25 +87,25 @@ defaultConf
     })
     .addButton({ 
         category: "Pet",
+        configName: "get_pet_profit",
+        title: "Get New Pet Profit",
+        description: "Gets the new pet profit if pet profit is not accurate. This will cause some temporary lag so dont spam it.",
+        subcategory: "Tracker",
+        onClick(setting) {
+            ChatLib.chat("&7[&bCollection Tracker&7] &r&fGetting new pet profit...");
+            global_vars.get_new_pet_profit = true;
+        }
+    })
+    .addButton({ 
+        category: "Pet",
         configName: "move_pet_gui",
         title: "Move Pet GUI",
-        description: "Moves the pet GUI to a new location.",
+        description: "Moves the pet GUI to a new location. Or just use /petgui in chat.",
         subcategory: "GUI",
         tags: ["GUI"],
         onClick(setting) {
             Client.currentGui.close();
             global_vars.move_pet = true;
-        }
-    })
-    .addButton({ 
-        category: "Pet",
-        configName: "get_pet_profit",
-        title: "Get New Pet Profit",
-        description: "Gets the new pet profit if pet profit is not accurate.",
-        subcategory: "Profit",
-        tags: ["Profit"],
-        onClick(setting) {
-            global_vars.get_new_pet_profit = true;
         }
     })
     .addSwitch({
@@ -153,7 +154,7 @@ defaultConf
         category: "Pet",
         configName: "format_pet_profit_m",
         title: "Format Profits Per Hour",
-        description: "Toggles the formatting of pet net profitsto millions.",
+        description: "Toggles the formatting of pet net profits into millions.",
         subcategory: "Formatting",
     })
     
@@ -171,7 +172,7 @@ defaultConf
         category: "Obsidian",
         configName: "move_obby_gui",
         title: "Move Obsidian GUI",
-        description: "Moves the obsidian GUI to a new location.",
+        description: "Moves the obsidian GUI to a new location. Or just use /obbygui in chat.",
         subcategory: "GUI",
         tags: ["GUI"],
         onClick(setting) {
@@ -214,39 +215,7 @@ defaultConf
         description: "Displays the amount of net ovoid profit made and profit per hour",
         subcategory: "Display",
     })
-    .addTextInput({
-        category: "Obsidian",
-        configName: "desired_e_price",
-        title: "Set desired E_Obby Price",
-        description: "Calculate how much profit you would make if the price of E_Obby was this value.",
-        subcategory: "Desired Rates",
-        value: "4000",
-        placeHolder: "4000",
-    })
-    .addSwitch({
-        category: "Obsidian",
-        configName: "display_obby_profit_e_desired",
-        title: "Enable Desired E-Obby Profit Display",
-        description: "Displays the amount of net enchanted obsidian profit made and profit per hour if you were selling at a set price.",
-        subcategory: "Desired Rates",
-    })
-    .addTextInput({
-        category: "Obsidian",
-        configName: "desired_o_price",
-        title: "Set desired Ovoid Price",
-        description: "Calculate how much profit you would make if the price of Ovoid was this value.",
-        subcategory: "Desired Rates",
-        value: "130000",
-        placeHolder: "130000",
-    })
-    .addSwitch({
-        category: "Obsidian",
-        configName: "display_obby_profit_o_desired",
-        title: "Enable Desired Ovoid Profit Display",
-        description: "Displays the amount of net ovoid profit made and profit per hour if you were selling at a set price.",
-        subcategory: "Desired Rates",
-    })
-    .addSwitch({
+    .addSwitch({ 
         category: "Obsidian",
         configName: "format_blocks_m",
         title: "Format Blocks Broken",
@@ -268,46 +237,48 @@ defaultConf
         subcategory: "Formatting",
     })
 
+
+
     .addSwitch({ 
         category: "Gold",
         configName: "tracker_gold_enable",
         title: "Enable Gold Tracker",
-        description: "Enables the gold tracker to track gold collection and profits.",
+        description: "Enables the gold tracker to track gold collection and profits. --not implemented yet--",
         subcategory: "Tracker",
     })
     .addSwitch({ 
         category: "Quartz",
         configName: "tracker_quartz_enable",
         title: "Enable Quartz Tracker",
-        description: "Enables the quartz tracker to track quartz collection and profits.",
+        description: "Enables the quartz tracker to track quartz collection and profits. --not implemented yet--",
         subcategory: "Tracker",
     })
     .addSwitch({ 
         category: "Umber",
         configName: "tracker_umber_enable",
         title: "Enable Umber Tracker",
-        description: "Enables the umber tracker to track umber collection and profits.",
+        description: "Enables the umber tracker to track umber collection and profits. --not implemented yet--",
         subcategory: "Tracker",
     })
     .addSwitch({ 
         category: "Tungsten",
         configName: "tracker_tungsten_enable",
         title: "Enable Tungsten Tracker",
-        description: "Enables the tungsten tracker to track tungsten collection and profits.",
+        description: "Enables the tungsten tracker to track tungsten collection and profits. --not implemented yet--",
         subcategory: "Tracker",
     })
     .addSwitch({ 
         category: "Glacite",
         configName: "tracker_glacite_enable",
         title: "Enable Glacite Tracker",
-        description: "Enables the glacite tracker to track glacite collection and profits.",
+        description: "Enables the glacite tracker to track glacite collection and profits. --not implemented yet--",
         subcategory: "Tracker",
     })
     .addSwitch({ 
         category: "Mithril",
         configName: "tracker_mithril_enable",
         title: "Enable Mithril Tracker",
-        description: "Enables the mithril tracker to track mithril collection and profits.",
+        description: "Enables the mithril tracker to track mithril collection and profits. --not implemented yet--",
         subcategory: "Tracker",
     });
 
@@ -315,5 +286,6 @@ const config = new Settings("MiningCollectionTracker", defaultConf, "data/ColorS
     .setCommand("collection-tracker", ["ctrack"])
 
 config
+    .setSize(60, 55)
     .apply()
 export default () => config.settings

@@ -39,8 +39,6 @@ export function obby_calculate(reset, blocks, area, time, fortune) {
 
         let e_obby_profit_net = (e_obby_net * global_vars.e_obby_data);
         let e_obby_profit_ph = e_obby_ph * global_vars.e_obby_data;
-        let e_obby_profit_desired_net = (e_obby_net * settings().desired_e_price);
-        let e_obby_profit_desired_ph = e_obby_ph * settings().desired_e_price;
 
 
         let ovoid_net = total_obby / 5120;
@@ -48,34 +46,26 @@ export function obby_calculate(reset, blocks, area, time, fortune) {
 
         let ovoid_profit_net = ((ovoid_net * global_vars.ovoid_data) - (ovoid_net * global_vars.null_sphere_data * 128));
         let ovoid_profit_ph = ((ovoid_ph * global_vars.ovoid_data) - (ovoid_ph * global_vars.null_sphere_data * 128));
-        let ovoid_profit_desired_net = ((ovoid_net * settings().desired_o_price) - (ovoid_net * global_vars.null_sphere_data * 128));
-        let ovoid_profit_desired_ph = ((ovoid_ph * settings().desired_o_price) - (ovoid_ph * global_vars.null_sphere_data * 128));
 
         if (settings().integrate_profit == true) {
             e_obby_profit_net = (e_obby_profit_net + global_vars.total_pet_pofit).toFixed(0);
             e_obby_profit_ph += global_vars.pet_profit_ph;
-            e_obby_profit_desired_net = (e_obby_profit_desired_net + global_vars.total_pet_pofit).toFixed(0);
-            e_obby_profit_desired_ph += global_vars.pet_profit_ph;
 
             ovoid_profit_net = (ovoid_profit_net + global_vars.total_pet_pofit).toFixed(0);
             ovoid_profit_ph += global_vars.pet_profit_ph;
-            ovoid_profit_desired_net = (ovoid_profit_desired_net + global_vars.total_pet_pofit).toFixed(0);
-            ovoid_profit_desired_ph += global_vars.pet_profit_ph;
         } else {
             e_obby_profit_net = e_obby_profit_net.toFixed(0);
-            e_obby_profit_desired_net = e_obby_profit_desired_net.toFixed(0);
 
             ovoid_profit_net = ovoid_profit_net.toFixed(0);
-            ovoid_profit_desired_net = ovoid_profit_desired_net.toFixed(0);
         }
 
-        format_obby(blocks_per_hour, obby_per_hour, e_obby_profit_net, e_obby_profit_ph, e_obby_profit_desired_net, e_obby_profit_desired_ph, ovoid_profit_net, ovoid_profit_ph, ovoid_profit_desired_net, ovoid_profit_desired_ph);
+        format_obby(blocks_per_hour, obby_per_hour, e_obby_profit_net, e_obby_profit_ph, ovoid_profit_net, ovoid_profit_ph);
         display_obsidian.runtime = format_time(time);
     } else {
         collection_timers.Obsidian.is_afk = true;
     }
 }
-function format_obby(blocks_per_hour, obby_per_hour, e_obby_profit_net, e_obby_profit_ph, e_obby_profit_desired_net, e_obby_profit_desired_ph, ovoid_profit_net, ovoid_profit_ph, ovoid_profit_desired_net, ovoid_profit_desired_ph) {
+function format_obby(blocks_per_hour, obby_per_hour, e_obby_profit_net, e_obby_profit_ph, ovoid_profit_net, ovoid_profit_ph) {
     let format_blocks = settings().format_blocks_m;
     if (format_blocks == true) {
         display_obsidian.blocks_net = (total_blocks / 1000000).toFixed(2) + "M";
@@ -98,23 +88,15 @@ function format_obby(blocks_per_hour, obby_per_hour, e_obby_profit_net, e_obby_p
     if (format_obby_profit == true) {
         display_obsidian.e_profit_net = (e_obby_profit_net / 1000000).toFixed(2) + "M";
         display_obsidian.e_profit_ph = (e_obby_profit_ph / 1000000).toFixed(2) + "M";
-        display_obsidian.e_desired_profit_net = (e_obby_profit_desired_net / 1000000).toFixed(2) + "M";
-        display_obsidian.e_desired_profit_ph = (e_obby_profit_desired_ph / 1000000).toFixed(2) + "M";
 
         display_obsidian.o_profit_net = (ovoid_profit_net / 1000000).toFixed(2) + "M";
         display_obsidian.o_profit_ph = (ovoid_profit_ph / 1000000).toFixed(2) + "M";
-        display_obsidian.o_desired_profit_net = (ovoid_profit_desired_net / 1000000).toFixed(2) + "M";
-        display_obsidian.o_desired_profit_ph = (ovoid_profit_desired_ph / 1000000).toFixed(2) + "M";
     } else {
         display_obsidian.e_profit_net = e_obby_profit_net.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         display_obsidian.e_profit_ph = e_obby_profit_ph.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        display_obsidian.e_desired_profit_net = e_obby_profit_desired_net.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        display_obsidian.e_desired_profit_ph = e_obby_profit_desired_ph.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         
         display_obsidian.o_profit_net = ovoid_profit_net.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         display_obsidian.o_profit_ph = ovoid_profit_ph.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        display_obsidian.o_desired_profit_net = ovoid_profit_desired_net.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        display_obsidian.o_desired_profit_ph = ovoid_profit_desired_ph.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 }
 
