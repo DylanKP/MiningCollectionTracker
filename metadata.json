@@ -1,6 +1,6 @@
 {
     "name": "MiningCollectionTracker",
-    "creator": "DylPug",
+    "creator": "dln",
     "description": "A mining collection tracker for Hypixel Skyblock.",
     "version": "0.1.0",
     "entry": "index.js", 
