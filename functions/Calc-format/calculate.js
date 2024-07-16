@@ -47,7 +47,7 @@ export function obby_calculate(reset, blocks, area, time, fortune) {
         let ovoid_profit_net = ((ovoid_net * global_vars.ovoid_data) - (ovoid_net * global_vars.null_sphere_data * 128));
         let ovoid_profit_ph = ((ovoid_ph * global_vars.ovoid_data) - (ovoid_ph * global_vars.null_sphere_data * 128));
 
-        if (settings().integrate_profit == true) {
+        if (settings().integrate_profit == true && settings().tracker_pet_enable == true) {
             e_obby_profit_net = (e_obby_profit_net + global_vars.total_pet_pofit).toFixed(0);
             e_obby_profit_ph += global_vars.pet_profit_ph;
 

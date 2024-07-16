@@ -33,9 +33,6 @@ export function getPetprofit(pet_name, pet_tier, callback) {
     request({
         url: baseUrl,
         json: true,
-        headers: {
-            'User-Agent': 'Mozilla/5.0'
-        },
     }).then((auctions) => {
         if (auctions) {
             let pet_search_lowest = `${processed_pet_name};${processed_pet_tier}`;
@@ -49,7 +46,7 @@ export function getPetprofit(pet_name, pet_tier, callback) {
             highest_lvl_pet = auctions[pet_search_highest];
 
             net_profit = highest_lvl_pet - lowest_lvl_pet;
-            ChatLib.chat(`&7[&bCollection Tracker&7] &r&f${pet_name} profit: &a${net_profit.toLocaleString()} coins`);
+            //ChatLib.chat(`&7[&bCollection Tracker&7] &r&f${pet_name} profit: &a${net_profit.toLocaleString()} coins`);
             callback(net_profit);
         } else {
             ChatLib.chat("Failed to fetch auction data.");

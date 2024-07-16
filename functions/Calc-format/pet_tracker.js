@@ -10,7 +10,9 @@ function chat_parser(event) {
     if(message.startsWith('You summoned your')){
         pet_data_reset = true;
         get_pet_profit = true;
-        ChatLib.chat("&7[&bCollection Tracker&7] &r&fPet data reset...")
+        if (settings().tracker_pet_enable == true) {
+            ChatLib.chat("&7[&bCollection Tracker&7] &r&f New Pet Detected! Recalculating Pet Progression...");
+        }
     }
 };
 

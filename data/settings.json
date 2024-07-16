@@ -27,7 +27,7 @@
             {
                 "type": 1,
                 "name": "bazaar_update_rate",
-                "value": 60
+                "value": 30
             },
             {
                 "type": 6,

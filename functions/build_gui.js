@@ -25,7 +25,7 @@ function move_gui() {
 }
 
 
-export function build_obby_gui() {
+export function build_gui() {
     let pet_lines = [];
     let obby_lines = [];
     if ((collection_timers.Obsidian.is_afk == false && settings().tracker_obby_enable == true) || obby_gui.isOpen()) {

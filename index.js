@@ -5,11 +5,11 @@ import { get_area, get_fortune, get_pet_data } from "./functions/tab_parser";
 import { check_afk, timer } from "./functions/timer";
 import { pet_calculate } from "./functions/Calc-format/pet_tracker";
 import { obby_calculate } from "./functions/Calc-format/calculate"; 
-import { build_obby_gui } from "./functions/build_gui";
+import { build_gui } from "./functions/build_gui";
 import settings from "./settings";
 
 
-register("renderOverlay", build_obby_gui);
+register("renderOverlay", build_gui);
 register("tick", on_tick);
 
 register("command", () => {
