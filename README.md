@@ -1,2 +1,2 @@
-# Obsidian-Calculator
-Obsidian Calculator for Skyblock. Module for Chattriggers.
+# Mining Collection Tracker
+Mining collection tracker and profit calculator for Skyblock. Module for Chattriggers.
