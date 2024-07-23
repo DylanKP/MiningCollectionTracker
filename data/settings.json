@@ -42,7 +42,7 @@
             {
                 "type": 6,
                 "name": "tracker_pet_enable",
-                "value": true
+                "value": false
             },
             {
                 "type": 2,
@@ -70,7 +70,7 @@
             {
                 "type": 6,
                 "name": "integrate_profit",
-                "value": true
+                "value": false
             },
             {
                 "type": 6,

@@ -1,7 +1,9 @@
 import settings from "../../settings";
+import { collection_timers } from "../timer";
 import { sumlevel } from "./petLevelDict";
 import { global_vars, display_pet_data } from "../global_vars";
-import { getPetprofit } from "../other";
+import { getPetprofit } from "../api_data";
+import { get_pet_data } from "../tab_parser";
 
 register("chat", chat_parser);
 
@@ -10,6 +12,7 @@ function chat_parser(event) {
     if(message.startsWith('You summoned your')){
         pet_data_reset = true;
         get_pet_profit = true;
+        collection_timers.Pet = { start_time: null, total_time: 1, previous_session_time: 1, is_afk: true, afk_offset: null };
         if (settings().tracker_pet_enable == true) {
             ChatLib.chat("&7[&bCollection Tracker&7] &r&f New Pet Detected! Recalculating Pet Progression...");
         }
@@ -24,90 +27,70 @@ let previous_pet_exp = 0;
 let pet_xp_gained = 0;
 let total_pet_xp = 0;
 
-let previous_session_time = 0;
-let pet_afk_start = null;
-
 let pet_data_reset = false;
-let already_afk = true;
 
 let pet_profit = 0;
 let pet_exp_to_coin = 0;
 
-let afk_threshold = 15;
-
 let first_pet = true;
 let get_pet_profit = true;
 
-export function pet_calculate(name, tier, lvl, exp, reset) {
-    if (global_vars.pet_widget_alert === true) {
-        name = previous_pet_name;
-        tier = previous_pet_tier;
-        lvl = previous_pet_lvl;
-        exp = previous_pet_exp;
-    }
-    
+export function pet_calculate(reset, tab_data) {
     if (settings().tracker_pet_enable == true) {
-        set_initial_pet_data(name, tier, lvl, exp, reset);
 
-        // Reset pet_afk_start only when pet experience changes, indicating activity
-        if (previous_pet_exp != exp) {
-            if (pet_afk_start != null) {
-                // Calculate the AFK time and add it to the previous session time
-                previous_session_time += Date.now() - pet_afk_start;
-            }
-            pet_afk_start = Date.now();
-            global_vars.pet_afk = false;
-            already_afk = false;
+        // Get pet data
+        let pet_prog = get_pet_data(tab_data);
+        let name = pet_prog[0];
+        let tier = pet_prog[1];
+        let lvl = pet_prog[2];
+        let exp = pet_prog[3];
+
+
+        // If pet widget alert is true, set pet data to previous pet data
+        if (global_vars.pet_widget_alert === true) {
+            name = previous_pet_name;
+            tier = previous_pet_tier;
+            lvl = previous_pet_lvl;
+            exp = previous_pet_exp;
         }
 
-        if (isNaN(settings().afk_threshold) === false && settings().afk_threshold > 0) {
-            afk_threshold = settings().afk_threshold;
-        }
-        // If the pet_afk_start is set and the AFK time is more than 15 seconds, update the session time
-        if (pet_afk_start != null && (Date.now() - pet_afk_start > afk_threshold * 1000) && settings().disable_afk === false) {
-            global_vars.pet_afk = true;
-        }
-        if (global_vars.pet_afk === true && already_afk === false) {
-            previous_session_time += Date.now() - pet_afk_start;
-            pet_afk_start = null;
-            pet_data_reset = true;
-            ChatLib.chat("&7[&bCollection Tracker&7] &r&fIdle for "+afk_threshold+"s. Pet tracker AFK...");
-            already_afk = true;
-        }
-        
+
+        set_initial_pet_data(name, tier, lvl, exp, reset); // Set previous pet data for comparison against next tick
+
+
+        let exp_gain = 0;
         if (previous_pet_lvl !== lvl) { // If lvl changes, calculate exp gained
-            let sum = sumlevel(previous_pet_lvl, lvl - 1, tier);
-            pet_xp_gained += exp + (sum - previous_pet_exp);
-            total_pet_xp += exp + (sum - previous_pet_exp);
-            global_vars.total_pet_pofit += (exp + (sum - previous_pet_exp)) * pet_exp_to_coin;
+            exp_gain = exp + (sumlevel(previous_pet_lvl, lvl - 1, tier) - previous_pet_exp);
+        } else { // If lvl doesn't change, calculate exp gained
+            exp_gain = exp - previous_pet_exp;
+        }
+
+
+        if (exp_gain != 0 && isNaN(exp_gain) === false) { // If exp gain is not 0 and valid number, add it to the total exp gained
+            collection_timers.Pet.is_afk = false;
+            collection_timers.Pet.afk_offset = collection_timers.Pet.total_time;
+
+            pet_xp_gained += exp_gain; 
+            total_pet_xp += exp_gain; 
+            global_vars.total_pet_pofit += exp_gain * pet_exp_to_coin;
             previous_pet_lvl = lvl; // Set new previous pet lvl for the next tick
             previous_pet_exp = exp; // Set new previous pet exp for the next tick
-        } else {
-            // If no lvl change, add exp gained to the total
-            pet_xp_gained += (exp - previous_pet_exp); // Calculate exp gained (will be 0 if no change)
-            total_pet_xp += (exp - previous_pet_exp); // Add exp gained to the total
-            global_vars.total_pet_pofit += (exp - previous_pet_exp) * pet_exp_to_coin; // Add profit gained to the total
-            previous_pet_exp = exp;
         }
+
+
         
         let exp_next_lvl = Math.floor(sumlevel(lvl, lvl, tier) - exp); // Calculate exp needed to level up
-        let exp_100_lvl = exp_100_lvl = sumlevel(lvl, 100, tier) - exp;
+        let exp_100_lvl = 0;
         let exp_max_lvl = 0;
 
-        if (lvl > 100){
-            exp_100_lvl = 0;
+        if (lvl < 100){
+            exp_100_lvl = exp_100_lvl = sumlevel(lvl, 100, tier) - exp;
         }
         if (name === "Golden Dragon" || name === "Golden Dragon Egg") {
             exp_max_lvl = sumlevel(lvl, 200, tier) - exp;
         }
 
-        // Calculate elapsed time correctly considering pet_afk_start
-        let elapsed_time = (pet_afk_start != null ? Date.now() - pet_afk_start : 0) + previous_session_time;
-        if (elapsed_time === 0) {
-            elapsed_time = 1; // Prevent division by zero
-        }
-
-        let pet_xp_ph = pet_xp_gained / (elapsed_time / 3600000); // Calculate pet xp per hour
+        let pet_xp_ph = pet_xp_gained / (collection_timers.Pet.total_time / 3600000); // Calculate pet xp per hour
         global_vars.pet_profit_ph = pet_xp_ph * pet_exp_to_coin; // Calculate profit per hour
         let exp_next_lvl_time = exp_next_lvl / pet_xp_ph; // Calculate time to level up
         let exp_100_lvl_time = exp_100_lvl / pet_xp_ph; // Calculate time to reach lvl 100
@@ -116,8 +99,6 @@ export function pet_calculate(name, tier, lvl, exp, reset) {
         format_pet(exp_next_lvl_time, exp_100_lvl_time, exp_max_lvl_time, pet_xp_ph, total_pet_xp, global_vars.pet_profit_ph, global_vars.total_pet_pofit);
     } else {
         pet_data_reset = true;
-        global_vars.pet_afk = true;
-        already_afk = true;
         pet_xp_gained = 0;
         total_pet_xp = 0;
         global_vars.total_pet_pofit = 0;
@@ -127,8 +108,6 @@ export function pet_calculate(name, tier, lvl, exp, reset) {
 function set_initial_pet_data(name, tier, lvl, exp, reset) {
     if (reset == true) {
         pet_data_reset = true;
-        global_vars.pet_afk = true;
-        already_afk = true;
         pet_xp_gained = 0;
         total_pet_xp = 0;
         global_vars.total_pet_pofit = 0;
@@ -139,12 +118,10 @@ function set_initial_pet_data(name, tier, lvl, exp, reset) {
         previous_pet_lvl = lvl;
         previous_pet_exp = exp;
 
-        pet_afk_start = null;
-        previous_session_time = 0;
         pet_xp_gained = 0;
 
         pet_data_reset = false;
-        if (first_pet === true || get_pet_profit === true) {
+        if (first_pet === true || get_pet_profit === true) { // If it's the first pet or the pet profit needs to be recalculated
             first_pet = false;
             get_pet_profit = false;
             global_vars.get_new_pet_profit = true;

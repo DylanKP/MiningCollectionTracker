@@ -1,9 +1,10 @@
 import settings from "../../settings";
 import { global_vars, display_obsidian } from "../global_vars";
 import { collection_timers } from "../timer";
+import { get_area, get_fortune } from "../tab_parser";
 
 register("chat", ()=>{
-    if (global_vars.area == "The End"){
+    if (area == "The End") {
         compact_count = compact_count + 1;
     }
 }).setChatCriteria(/&r&b&lCOMPACT! &r&fYou found an &r&aEnchanted Obsidian&r&f!&r/g);
@@ -15,7 +16,9 @@ let total_blocks = 0;
 let total_obby = 0;
 let compact_count = 0;
 
-export function obby_calculate(reset, blocks, area, time, fortune) {
+let area = null;
+
+export function obby_calculate(reset, blocks, tab_data) {
     if (settings().tracker_obby_enable == true) {
         if (reset == true) {
             total_blocks = 0;
@@ -24,15 +27,23 @@ export function obby_calculate(reset, blocks, area, time, fortune) {
             return;
         }
 
-        if (area == "The End") {
+        area = get_area(tab_data);
+        let fortune = get_fortune(tab_data);
+
+        if (blocks != 0 && area == "The End") {
+            collection_timers.Obsidian.is_afk = false;
+            collection_timers.Obsidian.afk_offset = collection_timers.Obsidian.total_time;
+
             total_blocks += blocks;
+
             let obby = (blocks - compact_count) * fortune + (compact_count * 160);
+            compact_count = 0;
+
             total_obby += obby;
         }
-        compact_count = 0;
 
-        let blocks_per_hour = total_blocks / (time / 3600000);
-        let obby_per_hour = total_obby / (time / 3600000);
+        let blocks_per_hour = total_blocks / (collection_timers.Obsidian.total_time / 3600000);
+        let obby_per_hour = total_obby / (collection_timers.Obsidian.total_time / 3600000);
 
         let e_obby_net = total_obby / 160;
         let e_obby_ph = obby_per_hour / 160;
@@ -60,7 +71,7 @@ export function obby_calculate(reset, blocks, area, time, fortune) {
         }
 
         format_obby(blocks_per_hour, obby_per_hour, e_obby_profit_net, e_obby_profit_ph, ovoid_profit_net, ovoid_profit_ph);
-        display_obsidian.runtime = format_time(time);
+        display_obsidian.runtime = format_time(collection_timers.Obsidian.total_time);
     } else {
         collection_timers.Obsidian.is_afk = true;
     }

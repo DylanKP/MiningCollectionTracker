@@ -1120,7 +1120,8 @@
                 255
             ],
             "outlineSize": 0,
-            "roundness": 3
+            "roundness": 3,
+            "size": 0.5
         },
         "text": {
             "color": [
@@ -1131,5 +1132,6 @@
             ],
             "scale": 1
         }
-    }
+    },
+    "$schema": "https://raw.githubusercontent.com/DocilElm/Amaterasu/main/ColorScheme.schema.json"
 }

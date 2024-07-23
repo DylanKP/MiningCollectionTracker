@@ -1,6 +1,6 @@
 import Settings from "../Amaterasu/core/Settings"
 import DefaultConfig from "../Amaterasu/core/DefaultConfig"
-import { getBazaarItems } from "./functions/other";
+import { getBazaarItems } from "./functions/api_data";
 import { global_vars } from "./functions/global_vars";
 
 const defaultConf = new DefaultConfig("MiningCollectionTracker", "./data/settings.json");

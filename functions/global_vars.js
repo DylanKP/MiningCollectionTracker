@@ -4,7 +4,7 @@ export const global_vars = {
     area: null,
 
     timer_afk: false,
-    pet_afk: true,
+    
     get_new_pet_profit: false,
     pet_profit_ph: 0,
     total_pet_pofit: 0,
@@ -19,15 +19,6 @@ export const global_vars = {
     event_widget_alert: false,
     fortune_widget_alert: false,
     pet_widget_alert: false,
-
-    format_obby_blocks_net: 0,
-    format_obby_blocks_ph: 0,
-    format_obby_net: 0,
-    format_obby_ph: 0,
-    format_obby_e_profit_net: 0,
-    format_obby_e_profit_ph: 0,
-    format_obby_o_profit_net: 0,
-    format_obby_o_profit_ph: 0,
 }
 
 export const display_pet_data = {
@@ -51,9 +42,5 @@ export const display_obsidian = {
     e_profit_ph: 0, 
     o_profit_net: 0, 
     o_profit_ph: 0,
-    // e_desired_profit_net: 0, ///////
-    // e_desired_profit_ph: 0, ///////
-    // o_desired_profit_net: 0, ///////
-    // o_desired_profit_ph: 0, ///////
     runtime: "0s",
 };

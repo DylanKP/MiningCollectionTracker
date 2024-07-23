@@ -68,7 +68,7 @@ export function build_gui() {
         display_obby.setString("test");
     }
 
-    if ((global_vars.pet_afk == false && settings().tracker_pet_enable == true) || pet_gui.isOpen()) {
+    if ((collection_timers.Pet.is_afk == false && settings().tracker_pet_enable == true) || pet_gui.isOpen()) {
         if (settings().display_pet_xp == true || pet_gui.isOpen()) {
             pet_lines.push("Pet XP p/h: " + display_pet_data.display_pet_xp_ph);
             pet_lines.push("Total Pet XP: " + display_pet_data.display_total_xp);
