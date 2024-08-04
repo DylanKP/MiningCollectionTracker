@@ -128,17 +128,17 @@
             },
             {
                 "type": 6,
-                "name": "format_blocks_m",
+                "name": "format_blocks_m_Obsidian",
                 "value": false
             },
             {
                 "type": 6,
-                "name": "format_obby_m",
-                "value": true
+                "name": "format_collection_m_Obsidian",
+                "value": false
             },
             {
                 "type": 6,
-                "name": "format_obby_profit_m",
+                "name": "format_profit_m_Obsidian",
                 "value": true
             }
         ]
@@ -150,6 +150,10 @@
                 "type": 6,
                 "name": "tracker_gold_enable",
                 "value": false
+            },
+            {
+                "type": 2,
+                "name": "move_gold_gui"
             }
         ]
     },
@@ -160,6 +164,10 @@
                 "type": 6,
                 "name": "tracker_quartz_enable",
                 "value": false
+            },
+            {
+                "type": 2,
+                "name": "move_quartz_gui"
             }
         ]
     },
@@ -170,6 +178,10 @@
                 "type": 6,
                 "name": "tracker_umber_enable",
                 "value": false
+            },
+            {
+                "type": 2,
+                "name": "move_umber_gui"
             }
         ]
     },
@@ -180,6 +192,10 @@
                 "type": 6,
                 "name": "tracker_tungsten_enable",
                 "value": false
+            },
+            {
+                "type": 2,
+                "name": "move_tungsten_gui"
             }
         ]
     },
@@ -190,6 +206,10 @@
                 "type": 6,
                 "name": "tracker_glacite_enable",
                 "value": false
+            },
+            {
+                "type": 2,
+                "name": "move_glacite_gui"
             }
         ]
     },
@@ -200,6 +220,10 @@
                 "type": 6,
                 "name": "tracker_mithril_enable",
                 "value": false
+            },
+            {
+                "type": 2,
+                "name": "move_mithril_gui"
             }
         ]
     }

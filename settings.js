@@ -217,21 +217,21 @@ defaultConf
     })
     .addSwitch({ 
         category: "Obsidian",
-        configName: "format_blocks_m",
+        configName: "format_blocks_m_Obsidian",
         title: "Format Blocks Broken",
         description: "Toggles the formatting of blocks broken to millions.",
         subcategory: "Formatting",
     })
     .addSwitch({
         category: "Obsidian",
-        configName: "format_obby_m",
+        configName: "format_collection_m_Obsidian",
         title: "Format Obby Collected",
         description: "Toggles the formatting of the obby collection to millions.",
         subcategory: "Formatting",
     })
     .addSwitch({
         category: "Obsidian",
-        configName: "format_obby_profit_m",
+        configName: "format_profit_m_Obsidian",
         title: "Format Profits Per Hour",
         description: "Toggles the formatting of obsidian net profits and profits per hour to millions.",
         subcategory: "Formatting",
@@ -243,9 +243,22 @@ defaultConf
         category: "Gold",
         configName: "tracker_gold_enable",
         title: "Enable Gold Tracker",
-        description: "Enables the gold tracker to track gold collection and profits. --not implemented yet--",
+        description: "Enables the gold tracker to track gold collection and profits.",
         subcategory: "Tracker",
     })
+    .addButton({ 
+        category: "Gold",
+        configName: "move_gold_gui",
+        title: "Move Gold GUI",
+        description: "Moves the gold GUI to a new location.",
+        subcategory: "GUI",
+        tags: ["GUI"],
+        onClick(setting) {
+            Client.currentGui.close();
+            global_vars.move_gold = true;
+        }
+    })
+
     .addSwitch({ 
         category: "Quartz",
         configName: "tracker_quartz_enable",
@@ -253,6 +266,19 @@ defaultConf
         description: "Enables the quartz tracker to track quartz collection and profits. --not implemented yet--",
         subcategory: "Tracker",
     })
+    .addButton({ 
+        category: "Quartz",
+        configName: "move_quartz_gui",
+        title: "Move Quartz GUI",
+        description: "Moves the quartz GUI to a new location.",
+        subcategory: "GUI",
+        tags: ["GUI"],
+        onClick(setting) {
+            Client.currentGui.close();
+            global_vars.move_quartz = true;
+        }
+    })
+
     .addSwitch({ 
         category: "Umber",
         configName: "tracker_umber_enable",
@@ -260,6 +286,19 @@ defaultConf
         description: "Enables the umber tracker to track umber collection and profits. --not implemented yet--",
         subcategory: "Tracker",
     })
+    .addButton({ 
+        category: "Umber",
+        configName: "move_umber_gui",
+        title: "Move Umber GUI",
+        description: "Moves the umber GUI to a new location.",
+        subcategory: "GUI",
+        tags: ["GUI"],
+        onClick(setting) {
+            Client.currentGui.close();
+            global_vars.move_umber = true;
+        }
+    })
+
     .addSwitch({ 
         category: "Tungsten",
         configName: "tracker_tungsten_enable",
@@ -267,6 +306,19 @@ defaultConf
         description: "Enables the tungsten tracker to track tungsten collection and profits. --not implemented yet--",
         subcategory: "Tracker",
     })
+    .addButton({ 
+        category: "Tungsten",
+        configName: "move_tungsten_gui",
+        title: "Move Tungsten GUI",
+        description: "Moves the tungsten GUI to a new location.",
+        subcategory: "GUI",
+        tags: ["GUI"],
+        onClick(setting) {
+            Client.currentGui.close();
+            global_vars.move_tungsten = true;
+        }
+    })
+
     .addSwitch({ 
         category: "Glacite",
         configName: "tracker_glacite_enable",
@@ -274,12 +326,37 @@ defaultConf
         description: "Enables the glacite tracker to track glacite collection and profits. --not implemented yet--",
         subcategory: "Tracker",
     })
+    .addButton({ 
+        category: "Glacite",
+        configName: "move_glacite_gui",
+        title: "Move Glacite GUI",
+        description: "Moves the glacite GUI to a new location.",
+        subcategory: "GUI",
+        tags: ["GUI"],
+        onClick(setting) {
+            Client.currentGui.close();
+            global_vars.move_glacite = true;
+        }
+    })
+
     .addSwitch({ 
         category: "Mithril",
         configName: "tracker_mithril_enable",
         title: "Enable Mithril Tracker",
         description: "Enables the mithril tracker to track mithril collection and profits. --not implemented yet--",
         subcategory: "Tracker",
+    })
+    .addButton({
+        category: "Mithril",
+        configName: "move_mithril_gui",
+        title: "Move Mithril GUI",
+        description: "Moves the mithril GUI to a new location.",
+        subcategory: "GUI",
+        tags: ["GUI"],
+        onClick(setting) {
+            Client.currentGui.close();
+            global_vars.move_mithril = true;
+        }
     });
 
 const config = new Settings("MiningCollectionTracker", defaultConf, "data/ColorScheme.json", "Mining Collection Tracker v" + version)

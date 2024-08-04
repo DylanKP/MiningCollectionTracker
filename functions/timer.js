@@ -24,7 +24,7 @@ export function timer(reset) {
         for (let key in collection_timers) {
             collection_timers[key] = { start_time: null, total_time: 1, previous_session_time: 1, is_afk: true, afk_offset: null };
         }
-    } else if (global_vars.timer_afk == true) {
+    } else if (global_vars.timer_afk == true) { // Sets all timers to afk
         for (let key in collection_timers) {
             collection_timers[key].is_afk = true;
         }

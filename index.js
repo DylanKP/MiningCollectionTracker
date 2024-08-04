@@ -3,11 +3,10 @@ import { global_vars } from "./functions/global_vars";
 import { getBazaarItems } from "./functions/api_data";
 import { timer } from "./functions/timer";
 import { pet_calculate } from "./functions/Calc-format/pet_tracker";
-import { obby_calculate } from "./functions/Calc-format/calculate"; 
+import { calculate } from "./functions/Calc-format/calculate"; 
 import { build_gui } from "./functions/build_gui";
 import settings from "./settings";
 import { sack_parser } from "./functions/sack_parser";
-
 register("renderOverlay", build_gui);
 register("tick", on_tick);
 
@@ -28,8 +27,6 @@ register("step", () => {
 }).setDelay(60)
 
 
-
-
 function on_tick() {
     let reset = false;
     if (global_vars.reset == true) { // ensures that the reset is only called at the start of the tick
@@ -44,14 +41,22 @@ function on_tick() {
 
 
     pet_calculate(reset, tab_data);
-    obby_calculate(reset, additional_blocks_broken, tab_data);
+    calculate(additional_blocks_broken, tab_data);
 }
 
 
 getBazaarItems();
-ChatLib.chat("&7[&bCollection Tracker&7] &r&fFully loaded! Use &b/ctrack &fto open the tracker gui.");
+let loaded = false;
+function loading_message() {
+    if (loaded == false) {
+        ChatLib.chat("&7[&bCollection Tracker&7] &r&fFully loaded!");
+        ChatLib.chat("&7[&bCollection Tracker&7] &r&fUse &b/ctrack &fto open the tracker gui.");
+        loaded = true;
+    }
+}
 
 
 
 
 register('chat', sack_parser );
+register("worldLoad", loading_message);

@@ -1,4 +1,5 @@
-import { global_vars } from "./global_vars";
+// import { calculate_data } from "./Calc-format/calculate"; 
+import { global_vars, calculate_data } from "./global_vars";
 import request from "requestV2";
 
 
@@ -11,9 +12,33 @@ export function getBazaarItems() {
         },
     }).then((res) => {
         if (res && res.products) {
-            global_vars.e_obby_data = res.products.ENCHANTED_OBSIDIAN.quick_status.sellPrice;
-            global_vars.ovoid_data = res.products.NULL_OVOID.quick_status.buyPrice;
-            global_vars.null_sphere_data = res.products.NULL_SPHERE.quick_status.buyPrice;
+            // gets the current bazaar rates for the items and their enchanted versions
+            calculate_data.Obsidian.bz_prices.base = res.products.OBSIDIAN.quick_status.sellPrice;
+            calculate_data.Obsidian.bz_prices.enchanted = res.products.ENCHANTED_OBSIDIAN.quick_status.sellPrice;
+
+            global_vars.Ovoid = res.products.NULL_OVOID.quick_status.buyPrice;
+            global_vars.Null_Sphere = res.products.NULL_SPHERE.quick_status.buyPrice;
+
+            calculate_data.Gold.bz_prices.base = res.products.GOLD_INGOT.quick_status.sellPrice;
+            calculate_data.Gold.bz_prices.enchanted = res.products.ENCHANTED_GOLD.quick_status.sellPrice;
+            calculate_data.Gold.bz_prices.enchanted_block = res.products.ENCHANTED_GOLD_BLOCK.quick_status.sellPrice;
+
+            calculate_data.Quartz.bz_prices.base = res.products.QUARTZ.quick_status.sellPrice;
+            calculate_data.Quartz.bz_prices.enchanted = res.products.ENCHANTED_QUARTZ.quick_status.sellPrice;
+            calculate_data.Quartz.bz_prices.enchanted_block = res.products.ENCHANTED_QUARTZ_BLOCK.quick_status.sellPrice;
+
+            calculate_data.Umber.bz_prices.base = res.products.UMBER.quick_status.sellPrice;
+            calculate_data.Umber.bz_prices.enchanted = res.products.ENCHANTED_UMBER.quick_status.sellPrice;
+
+            calculate_data.Tungsten.bz_prices.base = res.products.TUNGSTEN.quick_status.sellPrice;
+            calculate_data.Tungsten.bz_prices.enchanted = res.products.ENCHANTED_TUNGSTEN.quick_status.sellPrice;
+
+            calculate_data.Glacite.bz_prices.base = res.products.GLACITE.quick_status.sellPrice;
+            calculate_data.Glacite.bz_prices.enchanted = res.products.ENCHANTED_GLACITE.quick_status.sellPrice;
+
+            calculate_data.Mithril.bz_prices.base = res.products.MITHRIL_ORE.quick_status.sellPrice;
+            calculate_data.Mithril.bz_prices.enchanted = res.products.ENCHANTED_MITHRIL.quick_status.sellPrice;
+
             ChatLib.chat("&7[&bCollection Tracker&7] &r&fBazaar data updated...");
         } else{
             ChatLib.chat("Failed to update bazaar data.");

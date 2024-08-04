@@ -9,12 +9,12 @@ register("chat", chat_parser);
 
 function chat_parser(event) {
     let message = ChatLib.getChatMessage(event);
-    if(message.startsWith('You summoned your')){
+    if(message.startsWith('You summoned your') || message.startsWith('Your pet is now holding')) {
         pet_data_reset = true;
         get_pet_profit = true;
         collection_timers.Pet = { start_time: null, total_time: 1, previous_session_time: 1, is_afk: true, afk_offset: null };
         if (settings().tracker_pet_enable == true) {
-            ChatLib.chat("&7[&bCollection Tracker&7] &r&f New Pet Detected! Recalculating Pet Progression...");
+            ChatLib.chat("&7[&bCollection Tracker&7] &r&f Pet Change Detected! Recalculating Pet Progression...");
         }
     }
 };
@@ -102,6 +102,7 @@ export function pet_calculate(reset, tab_data) {
         pet_xp_gained = 0;
         total_pet_xp = 0;
         global_vars.total_pet_pofit = 0;
+        collection_timers.Pet.is_afk = true;
     }
 }
 
