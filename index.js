@@ -72,7 +72,7 @@ function loading_message() { // this is the loading message that is displayed wh
 
 function check_server() {
     let ip = Server?.getIP();
-    if (ip == "hypixel.net" ) { // || ip == "alpha.hypixel.net"
+    if (ip == "hypixel.net" || ip == "alpha.hypixel.net") { 
         in_hypixel = true;
     } else {
         in_hypixel = false;
