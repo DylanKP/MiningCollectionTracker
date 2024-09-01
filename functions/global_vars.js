@@ -26,6 +26,8 @@ export const global_vars = {
     pet_widget_alert: false,
 }
 
+export let in_hypixel = true;
+
 export const calculate_data = {
     Obsidian: {
 
@@ -123,71 +125,73 @@ export const calculate_data = {
     },
 
 
+    // GOT RID OF TUNGSTEN AND UMBER BECUASE MINING THIS INVOLVES A LOT OF LOBBY SWAPPING AND EFFECIENT MINING BLOCKS WITH DIFFERENT YEILDS
+    // WHICH THE TRACKER CANT TRACK AND LOBBY SWAPPING EN SURE THAT THE TRACKER CANT GET THE SACK DATA
+    // 
+    // Umber: {
 
-    Umber: {
+    //     sack_collection: 0,
+    //     aprox_collection: 0,
+    //     bz_rate: 0, // the rate of the collection in the bazaar
 
-        sack_collection: 0,
-        aprox_collection: 0,
-        bz_rate: 0, // the rate of the collection in the bazaar
+    //     blocks_broken: 0,
+    //     true_collection: 0,
+    //     compact_rate: 160,
 
-        blocks_broken: 0,
-        true_collection: 0,
-        compact_rate: 160,
+    //     collection_world: {
+    //         "Dwarven Mines": {
+    //             "minecraft:hardened_clay": 1,
+    //             "minecraft:stained_hardened_clay[color=brown]": 2,
+    //             "minecraft:double_stone_slab2[seamless=true,variant=red_sandstone]": 3,
+    //         },
+    //     },
 
-        collection_world: {
-            "Dwarven Mines": {
-                "minecraft:hardened_clay": 1,
-                "minecraft:stained_hardened_clay[color=brown]": 2,
-                "minecraft:double_stone_slab2[seamless=true,variant=red_sandstone]": 3,
-            },
-        },
-
-        display: {
-            blocks_net: 0, 
-            blocks_ph: 0, 
-            collection_net: 0, 
-            collection_ph: 0, 
-            profit_net: 0,
-            profit_ph: 0,
-            alt_profit_net: 0, // null, should never actually be displayed
-            alt_profit_ph: 0,
-            time_to_goal: "0s",
-            runtime: "0s",
-        },
-    },
+    //     display: {
+    //         blocks_net: 0, 
+    //         blocks_ph: 0, 
+    //         collection_net: 0, 
+    //         collection_ph: 0, 
+    //         profit_net: 0,
+    //         profit_ph: 0,
+    //         alt_profit_net: 0, // null, should never actually be displayed
+    //         alt_profit_ph: 0,
+    //         time_to_goal: "0s",
+    //         runtime: "0s",
+    //     },
+    // },
 
 
 
-    Tungsten: {
+    // Tungsten: {
 
-        sack_collection: 0,
-        aprox_collection: 0,
-        bz_rate: 0, // the rate of the collection in the bazaar
+    //     sack_collection: 0,
+    //     aprox_collection: 0,
+    //     bz_rate: 0, // the rate of the collection in the bazaar
 
-        blocks_broken: 0,
-        true_collection: 0,
-        compact_rate: 160,
+    //     blocks_broken: 0,
+    //     true_collection: 0,
+    //     compact_rate: 160,
 
-        collection_world: {
-            "Dwarven Mines": {
-                "minecraft:cobblestone": 1,
-                "minecraft:clay": 3,
-            },
-        },
+    //     collection_world: {
+    //         "Dwarven Mines": {
+    //             "minecraft:cobblestone": 1,
+    //             "minecraft:clay": 3,
+    //         },
+    //     },
 
-        display: {
-            blocks_net: 0, 
-            blocks_ph: 0, 
-            collection_net: 0, 
-            collection_ph: 0, 
-            profit_net: 0,
-            profit_ph: 0,
-            alt_profit_net: 0, // null, should never actually be displayed
-            alt_profit_ph: 0,
-            time_to_goal: "0s",
-            runtime: "0s",
-        },
-    },
+    //     display: {
+    //         blocks_net: 0, 
+    //         blocks_ph: 0, 
+    //         collection_net: 0, 
+    //         collection_ph: 0, 
+    //         profit_net: 0,
+    //         profit_ph: 0,
+    //         alt_profit_net: 0, // null, should never actually be displayed
+    //         alt_profit_ph: 0,
+    //         time_to_goal: "0s",
+    //         runtime: "0s",
+    //     },
+    // },
 
 
 

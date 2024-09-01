@@ -374,143 +374,146 @@ defaultConf
 
 
 
-    .addSwitch({ 
-        category: "Umber",
-        configName: "tracker_umber_enable",
-        title: "Enable Umber Tracker",
-        description: "Enables the umber tracker to track umber collection and profits. --not implemented yet--",
-        subcategory: "Tracker",
-    })
-    .addButton({ 
-        category: "Umber",
-        configName: "move_umber_gui",
-        title: "Move Umber GUI",
-        description: "Moves the umber GUI to a new location.",
-        subcategory: "GUI",
-        onClick(setting) {
-            Client.currentGui.close();
-            global_vars.move_umber = true;
-        }
-    })
-    .addSwitch({
-        category: "Umber",
-        configName: "display_umber_block",
-        title: "Enable Block Display",
-        description: "Displays the amount of blocks broken and aprox. blocks broken in an hour in the GUI.",
-        subcategory: "Display",
-    })
-    .addSwitch({
-        category: "Umber",
-        configName: "display_umber_collected",
-        title: "Enable Umber Display",
-        description: "Displays the amount of blocks umber collected and aprox. umber collected in an hour in the GUI.",
-        subcategory: "Display",
-    })
-    .addSwitch({
-        category: "Umber",
-        configName: "display_umber_time",
-        title: "Enable Time Display",
-        description: "Displays the runtime of the umber calculator and average cycle time.",
-        subcategory: "Display",
-    })
-    .addSwitch({
-        category: "Umber",
-        configName: "display_umber_profit",
-        title: "Enable Umber Profit Display",
-        description: "Displays the amount of net umber profit made and profit per hour",
-        subcategory: "Display",
-    })
-    .addSwitch({
-        category: "Umber",
-        configName: "format_blocks_m_Umber",
-        title: "Format Blocks Broken",
-        description: "Toggles the formatting of blocks broken to millions.",
-        subcategory: "Formatting",
-    })
-    .addSwitch({
-        category: "Umber",
-        configName: "format_collection_m_Umber",
-        title: "Format Umber Collected",
-        description: "Toggles the formatting of the umber collection to millions.",
-        subcategory: "Formatting",
-    })
-    .addSwitch({
-        category: "Umber",
-        configName: "format_profit_m_Umber",
-        title: "Format Profits Per Hour",
-        description: "Toggles the formatting of umber net profits and profits per hour to millions.",
-        subcategory: "Formatting",
-    })
+    // GOT RID OF TUNGSTEN AND UMBER BECUASE MINING THIS INVOLVES A LOT OF LOBBY SWAPPING AND EFFECIENT MINING BLOCKS WITH DIFFERENT YEILDS
+    // WHICH THE TRACKER CANT TRACK AND LOBBY SWAPPING EN SURE THAT THE TRACKER CANT GET THE SACK DATA
+    //
+    // .addSwitch({ 
+    //     category: "Umber",
+    //     configName: "tracker_umber_enable",
+    //     title: "Enable Umber Tracker",
+    //     description: "Enables the umber tracker to track umber collection and profits. --not implemented yet--",
+    //     subcategory: "Tracker",
+    // })
+    // .addButton({ 
+    //     category: "Umber",
+    //     configName: "move_umber_gui",
+    //     title: "Move Umber GUI",
+    //     description: "Moves the umber GUI to a new location.",
+    //     subcategory: "GUI",
+    //     onClick(setting) {
+    //         Client.currentGui.close();
+    //         global_vars.move_umber = true;
+    //     }
+    // })
+    // .addSwitch({
+    //     category: "Umber",
+    //     configName: "display_umber_block",
+    //     title: "Enable Block Display",
+    //     description: "Displays the amount of blocks broken and aprox. blocks broken in an hour in the GUI.",
+    //     subcategory: "Display",
+    // })
+    // .addSwitch({
+    //     category: "Umber",
+    //     configName: "display_umber_collected",
+    //     title: "Enable Umber Display",
+    //     description: "Displays the amount of blocks umber collected and aprox. umber collected in an hour in the GUI.",
+    //     subcategory: "Display",
+    // })
+    // .addSwitch({
+    //     category: "Umber",
+    //     configName: "display_umber_time",
+    //     title: "Enable Time Display",
+    //     description: "Displays the runtime of the umber calculator and average cycle time.",
+    //     subcategory: "Display",
+    // })
+    // .addSwitch({
+    //     category: "Umber",
+    //     configName: "display_umber_profit",
+    //     title: "Enable Umber Profit Display",
+    //     description: "Displays the amount of net umber profit made and profit per hour",
+    //     subcategory: "Display",
+    // })
+    // .addSwitch({
+    //     category: "Umber",
+    //     configName: "format_blocks_m_Umber",
+    //     title: "Format Blocks Broken",
+    //     description: "Toggles the formatting of blocks broken to millions.",
+    //     subcategory: "Formatting",
+    // })
+    // .addSwitch({
+    //     category: "Umber",
+    //     configName: "format_collection_m_Umber",
+    //     title: "Format Umber Collected",
+    //     description: "Toggles the formatting of the umber collection to millions.",
+    //     subcategory: "Formatting",
+    // })
+    // .addSwitch({
+    //     category: "Umber",
+    //     configName: "format_profit_m_Umber",
+    //     title: "Format Profits Per Hour",
+    //     description: "Toggles the formatting of umber net profits and profits per hour to millions.",
+    //     subcategory: "Formatting",
+    // })
 
 
 
-    .addSwitch({ 
-        category: "Tungsten",
-        configName: "tracker_tungsten_enable",
-        title: "Enable Tungsten Tracker",
-        description: "Enables the tungsten tracker to track tungsten collection and profits. --not implemented yet--",
-        subcategory: "Tracker",
-    })
-    .addButton({ 
-        category: "Tungsten",
-        configName: "move_tungsten_gui",
-        title: "Move Tungsten GUI",
-        description: "Moves the tungsten GUI to a new location.",
-        subcategory: "GUI",
-        onClick(setting) {
-            Client.currentGui.close();
-            global_vars.move_tungsten = true;
-        }
-    })
-    .addSwitch({
-        category: "Tungsten",
-        configName: "display_tungsten_block",
-        title: "Enable Block Display",
-        description: "Displays the amount of blocks broken and aprox. blocks broken in an hour in the GUI.",
-        subcategory: "Display",
-    })
-    .addSwitch({
-        category: "Tungsten",
-        configName: "display_tungsten_collected",
-        title: "Enable Tungsten Display",
-        description: "Displays the amount of blocks tungsten collected and aprox. tungsten collected in an hour in the GUI.",
-        subcategory: "Display",
-    })
-    .addSwitch({
-        category: "Tungsten",
-        configName: "display_tungsten_time",
-        title: "Enable Time Display",
-        description: "Displays the runtime of the tungsten calculator and average cycle time.",
-        subcategory: "Display",
-    })
-    .addSwitch({
-        category: "Tungsten",
-        configName: "display_tungsten_profit",
-        title: "Enable Tungsten Profit Display",
-        description: "Displays the amount of net tungsten profit made and profit per hour",
-        subcategory: "Display",
-    })
-    .addSwitch({
-        category: "Tungsten",
-        configName: "format_blocks_m_Tungsten",
-        title: "Format Blocks Broken",
-        description: "Toggles the formatting of blocks broken to millions.",
-        subcategory: "Formatting",
-    })
-    .addSwitch({
-        category: "Tungsten",
-        configName: "format_collection_m_Tungsten",
-        title: "Format Tungsten Collected",
-        description: "Toggles the formatting of the tungsten collection to millions.",
-        subcategory: "Formatting",
-    })
-    .addSwitch({
-        category: "Tungsten",
-        configName: "format_profit_m_Tungsten",
-        title: "Format Profits Per Hour",
-        description: "Toggles the formatting of tungsten net profits and profits per hour to millions.",
-        subcategory: "Formatting",
-    })
+    // .addSwitch({ 
+    //     category: "Tungsten",
+    //     configName: "tracker_tungsten_enable",
+    //     title: "Enable Tungsten Tracker",
+    //     description: "Enables the tungsten tracker to track tungsten collection and profits. --not implemented yet--",
+    //     subcategory: "Tracker",
+    // })
+    // .addButton({ 
+    //     category: "Tungsten",
+    //     configName: "move_tungsten_gui",
+    //     title: "Move Tungsten GUI",
+    //     description: "Moves the tungsten GUI to a new location.",
+    //     subcategory: "GUI",
+    //     onClick(setting) {
+    //         Client.currentGui.close();
+    //         global_vars.move_tungsten = true;
+    //     }
+    // })
+    // .addSwitch({
+    //     category: "Tungsten",
+    //     configName: "display_tungsten_block",
+    //     title: "Enable Block Display",
+    //     description: "Displays the amount of blocks broken and aprox. blocks broken in an hour in the GUI.",
+    //     subcategory: "Display",
+    // })
+    // .addSwitch({
+    //     category: "Tungsten",
+    //     configName: "display_tungsten_collected",
+    //     title: "Enable Tungsten Display",
+    //     description: "Displays the amount of blocks tungsten collected and aprox. tungsten collected in an hour in the GUI.",
+    //     subcategory: "Display",
+    // })
+    // .addSwitch({
+    //     category: "Tungsten",
+    //     configName: "display_tungsten_time",
+    //     title: "Enable Time Display",
+    //     description: "Displays the runtime of the tungsten calculator and average cycle time.",
+    //     subcategory: "Display",
+    // })
+    // .addSwitch({
+    //     category: "Tungsten",
+    //     configName: "display_tungsten_profit",
+    //     title: "Enable Tungsten Profit Display",
+    //     description: "Displays the amount of net tungsten profit made and profit per hour",
+    //     subcategory: "Display",
+    // })
+    // .addSwitch({
+    //     category: "Tungsten",
+    //     configName: "format_blocks_m_Tungsten",
+    //     title: "Format Blocks Broken",
+    //     description: "Toggles the formatting of blocks broken to millions.",
+    //     subcategory: "Formatting",
+    // })
+    // .addSwitch({
+    //     category: "Tungsten",
+    //     configName: "format_collection_m_Tungsten",
+    //     title: "Format Tungsten Collected",
+    //     description: "Toggles the formatting of the tungsten collection to millions.",
+    //     subcategory: "Formatting",
+    // })
+    // .addSwitch({
+    //     category: "Tungsten",
+    //     configName: "format_profit_m_Tungsten",
+    //     title: "Format Profits Per Hour",
+    //     description: "Toggles the formatting of tungsten net profits and profits per hour to millions.",
+    //     subcategory: "Formatting",
+    // })
 
 
 

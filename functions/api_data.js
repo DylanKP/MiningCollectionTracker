@@ -16,8 +16,8 @@ export function getBazaarItems() {
             calculate_data.Obsidian.bz_rate = res.products.ENCHANTED_OBSIDIAN.quick_status.sellPrice;
             calculate_data.Gold.bz_rate = res.products.ENCHANTED_GOLD_BLOCK.quick_status.sellPrice;
             calculate_data.Quartz.bz_rate = res.products.ENCHANTED_QUARTZ_BLOCK.quick_status.sellPrice;
-            calculate_data.Umber.bz_rate = res.products.ENCHANTED_UMBER.quick_status.sellPrice;
-            calculate_data.Tungsten.bz_rate = res.products.ENCHANTED_TUNGSTEN.quick_status.sellPrice;
+            // calculate_data.Umber.bz_rate = res.products.ENCHANTED_UMBER.quick_status.sellPrice;
+            // calculate_data.Tungsten.bz_rate = res.products.ENCHANTED_TUNGSTEN.quick_status.sellPrice;
             calculate_data.Glacite.bz_rate = res.products.ENCHANTED_GLACITE.quick_status.sellPrice;
             calculate_data.Mithril.bz_rate = res.products.ENCHANTED_MITHRIL.quick_status.sellPrice;
 

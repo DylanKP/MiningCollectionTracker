@@ -1,5 +1,5 @@
 import { makeObjectDraggable } from "../../Draggable";
-import { global_vars, display_pet_data, calculate_data } from "./global_vars";
+import { global_vars, display_pet_data, calculate_data} from "./global_vars";
 import { collection_timers } from "./timer";
 import settings from "../settings";
 
@@ -73,7 +73,7 @@ function move_gui() {
 }
 
 
-export function build_gui() {
+export function build_gui(in_hypixel) {
     let pet_lines = [];
     let obby_lines = [];
     let gold_lines = [];
@@ -83,7 +83,8 @@ export function build_gui() {
     let glacite_lines = [];
     let mithril_lines = [];
 
-    if ((collection_timers.Pet.is_afk == false && settings().tracker_pet_enable == true) || pet_gui.isOpen()) {
+    
+    if ((collection_timers.Pet.is_afk == false && settings().tracker_pet_enable == true && in_hypixel == true) || pet_gui.isOpen()) {
         if (settings().display_pet_xp == true || pet_gui.isOpen()) {
             pet_lines.push("Pet XP p/h: " + display_pet_data.display_pet_xp_ph);
             pet_lines.push("Total Pet XP: " + display_pet_data.display_total_xp);
@@ -114,7 +115,7 @@ export function build_gui() {
         }
     }
 
-    if ((collection_timers.Obsidian.is_afk == false && settings().tracker_obby_enable == true) || obby_gui.isOpen()) {
+    if ((collection_timers.Obsidian.is_afk == false && settings().tracker_obby_enable == true && in_hypixel == true) || obby_gui.isOpen()) {
         if (settings().display_obby_block == true || obby_gui.isOpen()) {
             obby_lines.push("Total Blocks Broken: " + calculate_data.Obsidian.display.blocks_net);
             obby_lines.push("Average Blocks Broken p/h: " + calculate_data.Obsidian.display.blocks_ph);
@@ -153,7 +154,7 @@ export function build_gui() {
         }
     }
 
-    if ((collection_timers.Gold.is_afk == false && settings().tracker_gold_enable == true) || gold_gui.isOpen()) {
+    if ((collection_timers.Gold.is_afk == false && settings().tracker_gold_enable == true && in_hypixel == true) || gold_gui.isOpen()) {
         if (settings().display_gold_block == true || gold_gui.isOpen()) {
             gold_lines.push("Total Blocks Broken: " + calculate_data.Gold.display.blocks_net);
             gold_lines.push("Average Blocks Broken p/h: " + calculate_data.Gold.display.blocks_ph);
@@ -181,7 +182,7 @@ export function build_gui() {
         }
     }
 
-    if ((collection_timers.Quartz.is_afk == false && settings().tracker_quartz_enable == true) || quartz_gui.isOpen()) {
+    if ((collection_timers.Quartz.is_afk == false && settings().tracker_quartz_enable == true && in_hypixel == true) || quartz_gui.isOpen()) {
         if (settings().display_quartz_block == true || quartz_gui.isOpen()) {
             quartz_lines.push("Total Blocks Broken: " + calculate_data.Quartz.display.blocks_net);
             quartz_lines.push("Average Blocks Broken p/h: " + calculate_data.Quartz.display.blocks_ph);
@@ -206,7 +207,7 @@ export function build_gui() {
         }
     }
 
-    if ((collection_timers.Umber.is_afk == false && settings().tracker_umber_enable == true) || umber_gui.isOpen()) {
+    if ((collection_timers.Umber.is_afk == false && settings().tracker_umber_enable == true && in_hypixel == true) || umber_gui.isOpen()) {
         if (settings().display_umber_block == true || umber_gui.isOpen()) {
             umber_lines.push("Total Blocks Broken: " + calculate_data.Umber.display.blocks_net);
             umber_lines.push("Average Blocks Broken p/h: " + calculate_data.Umber.display.blocks_ph);
@@ -231,7 +232,7 @@ export function build_gui() {
         }
     }
 
-    if ((collection_timers.Tungsten.is_afk == false && settings().tracker_tungsten_enable == true) || tungsten_gui.isOpen()) {
+    if ((collection_timers.Tungsten.is_afk == false && settings().tracker_tungsten_enable == true && in_hypixel == true) || tungsten_gui.isOpen()) {
         if (settings().display_tungsten_block == true || tungsten_gui.isOpen()) {
             tungsten_lines.push("Total Blocks Broken: " + calculate_data.Tungsten.display.blocks_net);
             tungsten_lines.push("Average Blocks Broken p/h: " + calculate_data.Tungsten.display.blocks_ph);
@@ -256,7 +257,7 @@ export function build_gui() {
         }
     }
 
-    if ((collection_timers.Glacite.is_afk == false && settings().tracker_glacite_enable == true) || glacite_gui.isOpen()) {
+    if ((collection_timers.Glacite.is_afk == false && settings().tracker_glacite_enable == true && in_hypixel == true) || glacite_gui.isOpen()) {
         if (settings().display_glacite_block == true || glacite_gui.isOpen()) {
             glacite_lines.push("Total Blocks Broken: " + calculate_data.Glacite.display.blocks_net);
             glacite_lines.push("Average Blocks Broken p/h: " + calculate_data.Glacite.display.blocks_ph);
@@ -281,7 +282,7 @@ export function build_gui() {
         }
     }
 
-    if ((collection_timers.Mithril.is_afk == false && settings().tracker_mithril_enable == true) || mithril_gui.isOpen()) {
+    if ((collection_timers.Mithril.is_afk == false && settings().tracker_mithril_enable == true && in_hypixel == true) || mithril_gui.isOpen()) {
         if (settings().display_mithril_block == true || mithril_gui.isOpen()) {
             mithril_lines.push("Total Blocks Broken: " + calculate_data.Mithril.display.blocks_net);
             mithril_lines.push("Average Blocks Broken p/h: " + calculate_data.Mithril.display.blocks_ph);

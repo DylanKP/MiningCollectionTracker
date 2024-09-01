@@ -52,7 +52,6 @@ export function timer(reset) {
 
             let session_time = Date.now() - collection_timers[key].start_time;
             collection_timers[key].total_time = collection_timers[key].previous_session_time + session_time;
-
         } else {
             if (collection_timers[key].start_time !== null) {
                 collection_timers[key].previous_session_time = collection_timers[key].total_time;
