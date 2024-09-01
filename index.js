@@ -3,7 +3,7 @@ import { global_vars } from "./functions/global_vars";
 import { getBazaarItems } from "./functions/api_data";
 import { timer } from "./functions/timer";
 import { pet_calculate } from "./functions/Calc-format/pet_tracker";
-import { calculate } from "./functions/Calc-format/calculate"; 
+import { calculate } from "./functions/Calc-format/mining_tracker"; 
 import { build_gui } from "./functions/build_gui";
 import settings from "./settings";
 import { sack_parser } from "./functions/sack_parser";

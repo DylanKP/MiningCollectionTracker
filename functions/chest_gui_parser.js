@@ -21,6 +21,6 @@ export function get_gui() {
             msg_toggle = false;
         }
     } catch (error) {
-        console.log("MiningCollectionTracker, get_gui error: " + error);
+        ChatLib.chat("&7[&bCollection Tracker&7] &r&fget_gui error: " + error);
     }
 }
