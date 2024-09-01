@@ -14,7 +14,7 @@ function chat_parser(event) {
         get_pet_profit = true;
         collection_timers.Pet = { start_time: null, total_time: 1, previous_session_time: 1, is_afk: true, afk_offset: null };
         if (settings().tracker_pet_enable == true) {
-            ChatLib.chat("&7[&bCollection Tracker&7] &r&f Pet Change Detected! Recalculating Pet Progression...");
+            ChatLib.chat("&7[&bCollection Tracker&7] &r&fPet Change! Adjusting Pet Progression...");
         }
     }
 };

@@ -11,10 +11,17 @@ export function drill_tracker() {
             if (uuid != item_id) {
                 uuid = item_id;
                 previous_block_count = compact_block_count;
+                return 0;
             }
-            let additional_blocks_broken = compact_block_count - previous_block_count;
-            previous_block_count = compact_block_count;
-            return additional_blocks_broken;
+
+            if (compact_block_count != previous_block_count) {
+                let additional_blocks_broken = compact_block_count - previous_block_count;
+                previous_block_count = compact_block_count;
+
+                return additional_blocks_broken;
+            } else {
+                return 0;
+            }
         } else {
             return 0;
         }

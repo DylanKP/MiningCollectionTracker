@@ -42,7 +42,7 @@
             {
                 "type": 6,
                 "name": "tracker_pet_enable",
-                "value": false
+                "value": true
             },
             {
                 "type": 2,
@@ -154,6 +154,41 @@
             {
                 "type": 2,
                 "name": "move_gold_gui"
+            },
+            {
+                "type": 6,
+                "name": "display_gold_block",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "display_gold_collected",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "display_gold_time",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "display_gold_profit",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "format_blocks_m_Gold",
+                "value": false
+            },
+            {
+                "type": 6,
+                "name": "format_collection_m_Gold",
+                "value": false
+            },
+            {
+                "type": 6,
+                "name": "format_profit_m_Gold",
+                "value": true
             }
         ]
     },
@@ -168,6 +203,41 @@
             {
                 "type": 2,
                 "name": "move_quartz_gui"
+            },
+            {
+                "type": 6,
+                "name": "display_quartz_block",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "display_quartz_collected",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "display_quartz_time",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "display_quartz_profit",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "format_blocks_m_Quartz",
+                "value": false
+            },
+            {
+                "type": 6,
+                "name": "format_collection_m_Quartz",
+                "value": false
+            },
+            {
+                "type": 6,
+                "name": "format_profit_m_Quartz",
+                "value": false
             }
         ]
     },
@@ -182,6 +252,41 @@
             {
                 "type": 2,
                 "name": "move_umber_gui"
+            },
+            {
+                "type": 6,
+                "name": "display_umber_block",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "display_umber_collected",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "display_umber_time",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "display_umber_profit",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "format_blocks_m_Umber",
+                "value": false
+            },
+            {
+                "type": 6,
+                "name": "format_collection_m_Umber",
+                "value": false
+            },
+            {
+                "type": 6,
+                "name": "format_profit_m_Umber",
+                "value": false
             }
         ]
     },
@@ -196,6 +301,41 @@
             {
                 "type": 2,
                 "name": "move_tungsten_gui"
+            },
+            {
+                "type": 6,
+                "name": "display_tungsten_block",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "display_tungsten_collected",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "display_tungsten_time",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "display_tungsten_profit",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "format_blocks_m_Tungsten",
+                "value": false
+            },
+            {
+                "type": 6,
+                "name": "format_collection_m_Tungsten",
+                "value": false
+            },
+            {
+                "type": 6,
+                "name": "format_profit_m_Tungsten",
+                "value": false
             }
         ]
     },
@@ -210,6 +350,41 @@
             {
                 "type": 2,
                 "name": "move_glacite_gui"
+            },
+            {
+                "type": 6,
+                "name": "display_glacite_block",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "display_glacite_collected",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "display_glacite_time",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "display_glacite_profit",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "format_blocks_m_Glacite",
+                "value": false
+            },
+            {
+                "type": 6,
+                "name": "format_collection_m_Glacite",
+                "value": false
+            },
+            {
+                "type": 6,
+                "name": "format_profit_m_Glacite",
+                "value": false
             }
         ]
     },
@@ -224,6 +399,41 @@
             {
                 "type": 2,
                 "name": "move_mithril_gui"
+            },
+            {
+                "type": 6,
+                "name": "display_mithril_block",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "display_mithril_collected",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "display_mithril_time",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "display_mithril_profit",
+                "value": true
+            },
+            {
+                "type": 6,
+                "name": "format_blocks_m_Mithril",
+                "value": false
+            },
+            {
+                "type": 6,
+                "name": "format_collection_m_Mithril",
+                "value": false
+            },
+            {
+                "type": 6,
+                "name": "format_profit_m_Mithril",
+                "value": false
             }
         ]
     }

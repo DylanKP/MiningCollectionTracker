@@ -7,13 +7,22 @@ import { calculate } from "./functions/Calc-format/calculate";
 import { build_gui } from "./functions/build_gui";
 import settings from "./settings";
 import { sack_parser } from "./functions/sack_parser";
+
 register("renderOverlay", build_gui);
 register("tick", on_tick);
+register('chat', sack_parser );
+register("worldLoad", loading_message);
+
+import { get_gui } from "./functions/chest_gui_parser";
 
 register("command", () => {
     global_vars.reset = true;
     ChatLib.chat("&7[&bCollection Tracker&7] &r&fResetting Collection Tracker...");
 }).setCommandName("retrack");
+
+register("step", () => {
+    get_gui();
+}).setFps(20);
 
 
 let minutes = 0;
@@ -29,7 +38,7 @@ register("step", () => {
 
 function on_tick() {
     let reset = false;
-    if (global_vars.reset == true) { // ensures that the reset is only called at the start of the tick
+    if (global_vars.reset == true) { // ensures that the reset is only called at the start of the tick, might be pointless
         reset = global_vars.reset;
         global_vars.reset = false;
     }
@@ -41,13 +50,11 @@ function on_tick() {
 
 
     pet_calculate(reset, tab_data);
-    calculate(additional_blocks_broken, tab_data);
+    calculate(additional_blocks_broken, tab_data, reset);
 }
 
-
-getBazaarItems();
 let loaded = false;
-function loading_message() {
+function loading_message() { // this is the loading message that is displayed when the script is loaded
     if (loaded == false) {
         ChatLib.chat("&7[&bCollection Tracker&7] &r&fFully loaded!");
         ChatLib.chat("&7[&bCollection Tracker&7] &r&fUse &b/ctrack &fto open the tracker gui.");
@@ -55,8 +62,4 @@ function loading_message() {
     }
 }
 
-
-
-
-register('chat', sack_parser );
-register("worldLoad", loading_message);
+getBazaarItems();

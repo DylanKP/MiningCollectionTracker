@@ -83,6 +83,37 @@ export function build_gui() {
     let glacite_lines = [];
     let mithril_lines = [];
 
+    if ((collection_timers.Pet.is_afk == false && settings().tracker_pet_enable == true) || pet_gui.isOpen()) {
+        if (settings().display_pet_xp == true || pet_gui.isOpen()) {
+            pet_lines.push("Pet XP p/h: " + display_pet_data.display_pet_xp_ph);
+            pet_lines.push("Total Pet XP: " + display_pet_data.display_total_xp);
+            pet_lines.push("");
+        }
+
+        if (settings().display_pet_lvl_time == true || pet_gui.isOpen()) {
+            pet_lines.push("Time to next level: " + display_pet_data.display_next_lvl_time);
+            if (display_pet_data.display_100_lvl_time != 0){
+                pet_lines.push("Time to lvl 100: " + display_pet_data.display_100_lvl_time);
+            }
+            if (display_pet_data.display_max_lvl_time != 0){
+                pet_lines.push("Time to lvl 200: " + display_pet_data.display_max_lvl_time);
+            }
+            pet_lines.push("");
+        }
+
+        if (settings().display_pet_profit == true || pet_gui.isOpen()) {
+            pet_lines.push("Profit Per Pet: " + display_pet_data.display_pet_profit);
+            if (settings().integrate_profit == false) {
+                pet_lines.push("Profit Per Pet p/h: " + display_pet_data.display_pet_profit_ph);
+                pet_lines.push("Net Profit Per Pet: " + display_pet_data.display_pet_profit_net);
+            }
+        }
+
+        if (global_vars.pet_widget_alert == true && settings().hide_widget_alerts == false) {
+            pet_lines.push("Pet Widget Not Available. Check /tablist");
+        }
+    }
+
     if ((collection_timers.Obsidian.is_afk == false && settings().tracker_obby_enable == true) || obby_gui.isOpen()) {
         if (settings().display_obby_block == true || obby_gui.isOpen()) {
             obby_lines.push("Total Blocks Broken: " + calculate_data.Obsidian.display.blocks_net);
@@ -122,39 +153,181 @@ export function build_gui() {
         }
     }
 
-    if ((collection_timers.Pet.is_afk == false && settings().tracker_pet_enable == true) || pet_gui.isOpen()) {
-        if (settings().display_pet_xp == true || pet_gui.isOpen()) {
-            pet_lines.push("Pet XP p/h: " + display_pet_data.display_pet_xp_ph);
-            pet_lines.push("Total Pet XP: " + display_pet_data.display_total_xp);
-            pet_lines.push("");
+    if ((collection_timers.Gold.is_afk == false && settings().tracker_gold_enable == true) || gold_gui.isOpen()) {
+        if (settings().display_gold_block == true || gold_gui.isOpen()) {
+            gold_lines.push("Total Blocks Broken: " + calculate_data.Gold.display.blocks_net);
+            gold_lines.push("Average Blocks Broken p/h: " + calculate_data.Gold.display.blocks_ph);
+            gold_lines.push("");
         }
 
-        if (settings().display_pet_lvl_time == true || pet_gui.isOpen()) {
-            pet_lines.push("Time to next level: " + display_pet_data.display_next_lvl_time);
-            if (display_pet_data.display_100_lvl_time != 0){
-                pet_lines.push("Time to lvl 100: " + display_pet_data.display_100_lvl_time);
-            }
-            if (display_pet_data.display_max_lvl_time != 0){
-                pet_lines.push("Time to lvl 200: " + display_pet_data.display_max_lvl_time);
-            }
-            pet_lines.push("");
+        if (settings().display_gold_collected == true || gold_gui.isOpen()) {
+            gold_lines.push("Aprox. Gold Collected: " + calculate_data.Gold.display.collection_net);
+            gold_lines.push("Aprox. Gold p/h: " + calculate_data.Gold.display.collection_ph);
+            gold_lines.push("");
         }
 
-        if (settings().display_pet_profit == true || pet_gui.isOpen()) {
-            pet_lines.push("Profit Per Pet: " + display_pet_data.display_pet_profit);
-            if (settings().integrate_profit == false) {
-                pet_lines.push("Profit Per Pet p/h: " + display_pet_data.display_pet_profit_ph);
-                pet_lines.push("Net Profit Per Pet: " + display_pet_data.display_pet_profit_net);
+        if (settings().display_gold_time == true || gold_gui.isOpen()) {
+            if (calculate_data.Gold.display.time_to_goal != null || gold_gui.isOpen()) {
+                gold_lines.push("Time to 1 Billion: " + calculate_data.Gold.display.time_to_goal);
             }
+            gold_lines.push("Total time gold mining: " + calculate_data.Gold.display.runtime);
+            gold_lines.push("");
         }
 
-        if (global_vars.pet_widget_alert == true && settings().hide_widget_alerts == false) {
-            pet_lines.push("Pet Widget Not Available. Check /tablist");
+        if (settings().display_gold_profit == true || gold_gui.isOpen()) {
+            gold_lines.push("Gold Profit p/h: " + calculate_data.Gold.display.profit_ph);
+            gold_lines.push("Gold Net Profit: " + calculate_data.Gold.display.profit_net);
+            gold_lines.push("");
         }
     }
-    display_obby.setString(obby_lines.join("\n"));
-    display_obby.draw();
+
+    if ((collection_timers.Quartz.is_afk == false && settings().tracker_quartz_enable == true) || quartz_gui.isOpen()) {
+        if (settings().display_quartz_block == true || quartz_gui.isOpen()) {
+            quartz_lines.push("Total Blocks Broken: " + calculate_data.Quartz.display.blocks_net);
+            quartz_lines.push("Average Blocks Broken p/h: " + calculate_data.Quartz.display.blocks_ph);
+            quartz_lines.push("");
+        }
+
+        if (settings().display_quartz_collected == true || quartz_gui.isOpen()) {
+            quartz_lines.push("Aprox. Quartz Collected: " + calculate_data.Quartz.display.collection_net);
+            quartz_lines.push("Aprox. Quartz p/h: " + calculate_data.Quartz.display.collection_ph);
+            quartz_lines.push("");
+        }
+
+        if (settings().display_quartz_time == true || quartz_gui.isOpen()) {
+            quartz_lines.push("Total time quartz mining: " + calculate_data.Quartz.display.runtime);
+            quartz_lines.push("");
+        }
+
+        if (settings().display_quartz_profit == true || quartz_gui.isOpen()) {
+            quartz_lines.push("Quartz Profit p/h: " + calculate_data.Quartz.display.profit_ph);
+            quartz_lines.push("Quartz Net Profit: " + calculate_data.Quartz.display.profit_net);
+            quartz_lines.push("");
+        }
+    }
+
+    if ((collection_timers.Umber.is_afk == false && settings().tracker_umber_enable == true) || umber_gui.isOpen()) {
+        if (settings().display_umber_block == true || umber_gui.isOpen()) {
+            umber_lines.push("Total Blocks Broken: " + calculate_data.Umber.display.blocks_net);
+            umber_lines.push("Average Blocks Broken p/h: " + calculate_data.Umber.display.blocks_ph);
+            umber_lines.push("");
+        }
+
+        if (settings().display_umber_collected == true || umber_gui.isOpen()) {
+            umber_lines.push("Aprox. Umber Collected: " + calculate_data.Umber.display.collection_net);
+            umber_lines.push("Aprox. Umber p/h: " + calculate_data.Umber.display.collection_ph);
+            umber_lines.push("");
+        }
+
+        if (settings().display_umber_time == true || umber_gui.isOpen()) {
+            umber_lines.push("Total time umber mining: " + calculate_data.Umber.display.runtime);
+            umber_lines.push("");
+        }
+
+        if (settings().display_umber_profit == true || umber_gui.isOpen()) {
+            umber_lines.push("Umber Profit p/h: " + calculate_data.Umber.display.profit_ph);
+            umber_lines.push("Umber Net Profit: " + calculate_data.Umber.display.profit_net);
+            umber_lines.push("");
+        }
+    }
+
+    if ((collection_timers.Tungsten.is_afk == false && settings().tracker_tungsten_enable == true) || tungsten_gui.isOpen()) {
+        if (settings().display_tungsten_block == true || tungsten_gui.isOpen()) {
+            tungsten_lines.push("Total Blocks Broken: " + calculate_data.Tungsten.display.blocks_net);
+            tungsten_lines.push("Average Blocks Broken p/h: " + calculate_data.Tungsten.display.blocks_ph);
+            tungsten_lines.push("");
+        }
+
+        if (settings().display_tungsten_collected == true || tungsten_gui.isOpen()) {
+            tungsten_lines.push("Aprox. Tungsten Collected: " + calculate_data.Tungsten.display.collection_net);
+            tungsten_lines.push("Aprox. Tungsten p/h: " + calculate_data.Tungsten.display.collection_ph);
+            tungsten_lines.push("");
+        }
+
+        if (settings().display_tungsten_time == true || tungsten_gui.isOpen()) {
+            tungsten_lines.push("Total time tungsten mining: " + calculate_data.Tungsten.display.runtime);
+            tungsten_lines.push("");
+        }
+
+        if (settings().display_tungsten_profit == true || tungsten_gui.isOpen()) {
+            tungsten_lines.push("Tungsten Profit p/h: " + calculate_data.Tungsten.display.profit_ph);
+            tungsten_lines.push("Tungsten Net Profit: " + calculate_data.Tungsten.display.profit_net);
+            tungsten_lines.push("");
+        }
+    }
+
+    if ((collection_timers.Glacite.is_afk == false && settings().tracker_glacite_enable == true) || glacite_gui.isOpen()) {
+        if (settings().display_glacite_block == true || glacite_gui.isOpen()) {
+            glacite_lines.push("Total Blocks Broken: " + calculate_data.Glacite.display.blocks_net);
+            glacite_lines.push("Average Blocks Broken p/h: " + calculate_data.Glacite.display.blocks_ph);
+            glacite_lines.push("");
+        }
+
+        if (settings().display_glacite_collected == true || glacite_gui.isOpen()) {
+            glacite_lines.push("Aprox. Glacite Collected: " + calculate_data.Glacite.display.collection_net);
+            glacite_lines.push("Aprox. Glacite p/h: " + calculate_data.Glacite.display.collection_ph);
+            glacite_lines.push("");
+        }
+
+        if (settings().display_glacite_time == true || glacite_gui.isOpen()) {
+            glacite_lines.push("Total time glacite mining: " + calculate_data.Glacite.display.runtime);
+            glacite_lines.push("");
+        }
+
+        if (settings().display_glacite_profit == true || glacite_gui.isOpen()) {
+            glacite_lines.push("Glacite Profit p/h: " + calculate_data.Glacite.display.profit_ph);
+            glacite_lines.push("Glacite Net Profit: " + calculate_data.Glacite.display.profit_net);
+            glacite_lines.push("");
+        }
+    }
+
+    if ((collection_timers.Mithril.is_afk == false && settings().tracker_mithril_enable == true) || mithril_gui.isOpen()) {
+        if (settings().display_mithril_block == true || mithril_gui.isOpen()) {
+            mithril_lines.push("Total Blocks Broken: " + calculate_data.Mithril.display.blocks_net);
+            mithril_lines.push("Average Blocks Broken p/h: " + calculate_data.Mithril.display.blocks_ph);
+            mithril_lines.push("");
+        }
+
+        if (settings().display_mithril_collected == true || mithril_gui.isOpen()) {
+            mithril_lines.push("Aprox. Mithril Collected: " + calculate_data.Mithril.display.collection_net);
+            mithril_lines.push("Aprox. Mithril p/h: " + calculate_data.Mithril.display.collection_ph);
+            mithril_lines.push("");
+        }
+
+        if (settings().display_mithril_time == true || mithril_gui.isOpen()) {
+            mithril_lines.push("Total time mithril mining: " + calculate_data.Mithril.display.runtime);
+            mithril_lines.push("");
+        }
+
+        if (settings().display_mithril_profit == true || mithril_gui.isOpen()) {
+            mithril_lines.push("Mithril Profit p/h: " + calculate_data.Mithril.display.profit_ph);
+            mithril_lines.push("Mithril Net Profit: " + calculate_data.Mithril.display.profit_net);
+            mithril_lines.push("");
+        }
+    }
+
 
     display_pet.setString(pet_lines.join("\n"));
     display_pet.draw();
+
+    display_obby.setString(obby_lines.join("\n"));
+    display_obby.draw();
+
+    display_gold.setString(gold_lines.join("\n"));
+    display_gold.draw();
+
+    display_quartz.setString(quartz_lines.join("\n"));
+    display_quartz.draw();
+
+    display_umber.setString(umber_lines.join("\n"));
+    display_umber.draw();
+
+    display_tungsten.setString(tungsten_lines.join("\n"));
+    display_tungsten.draw();
+
+    display_glacite.setString(glacite_lines.join("\n"));
+    display_glacite.draw();
+
+    display_mithril.setString(mithril_lines.join("\n"));
+    display_mithril.draw();
 }

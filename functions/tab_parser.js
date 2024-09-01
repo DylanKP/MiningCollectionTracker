@@ -1,8 +1,9 @@
 import { global_vars } from "./global_vars";
 
-let area = null;
+
 export function get_area(data) {
     let tab_area = data.map(a => a.removeFormatting()).filter(a => a.includes('Area: '))[0];
+    let area = null;
     if (tab_area != null) {
         area = tab_area.split('Area: ')[1];
     }
@@ -12,24 +13,24 @@ export function get_area(data) {
 
 let fiesta = false;
 function fiesta_check(data) {
-    let tab_event_raw = data.map(a => a.removeFormatting()).filter(a => a.includes('Event: '))[0];
-    if (tab_event_raw != null) {
-        global_vars.event_widget_alert = false;
+    let raw_tab_data = data.map(a => a.removeFormatting());
+    let tab_event_index = raw_tab_data.findIndex(a => a.includes('Event: '));
 
-        let event = tab_event_raw.split('Event: ')[1];
+    if (tab_event_index !== -1 && raw_tab_data[tab_event_index + 1].includes('Starts In:') == false) {
+        let event = raw_tab_data[tab_event_index].split('Event: ')[1];
+
         if (event === "Mining Fiesta") {
             fiesta = true;
-            return fiesta;
         } else {
             fiesta = false;
-            return fiesta;
         }
-    } else {
-        global_vars.event_widget_alert = true;
-        return fiesta;
-    }
-}
 
+    } else if(tab_event_index == -1) {
+        global_vars.event_widget_alert = true;
+    }
+    
+    return fiesta;
+}
 
 let fortune = 1;
 export function get_fortune(data) {
@@ -38,15 +39,12 @@ export function get_fortune(data) {
     if (tab_fortune_raw != null) {
         global_vars.fortune_widget_alert = false;
 
-        let tab_fortune = tab_fortune_raw.split('Mining Fortune: ☘')[1];
-        tab_fortune = Number(tab_fortune);
-        if (isNaN(tab_fortune)) {
-            return fortune;
-        }
-        tab_fortune = (tab_fortune / 100) + 1;
-        fortune = tab_fortune;
-        if (fiesta == true) {
-            fortune = fortune * 2;
+        let tab_fortune = Number(tab_fortune_raw.split('Mining Fortune: ☘')[1]);
+        if (isNaN(tab_fortune) == false) {
+            fortune = (tab_fortune / 100) + 1;
+            if (fiesta == true) {
+                fortune = fortune * 2;
+            }
         }
         return fortune;
     } else {

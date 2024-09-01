@@ -25,10 +25,6 @@ export function sack_parser(event) {
             let item_name = item_data.split(" ").slice(1).join(" ").replace(/ /g, "_").toLowerCase();
             sack_dict[item_name] = item_count;
         }
-        
-        // for (let key in sack_dict) {
-        //     console.log(key + " " + sack_dict[key]);
-        // }
 
         sack_tracking(sack_dict);
     }
@@ -66,112 +62,22 @@ function sack_tracking(sack_dict) {
         }
     };
 
-    /// Check if the future items in the sack are enchanted or not
-    if (sack_collection.enchanted_obsidian > 0) {
-        calculate_data.Obsidian.block_and_enchant.enchant = true;
-        // block_and_enchant.Obsidian.enchant = true;
-    } else {
-        calculate_data.Obsidian.block_and_enchant.enchant = false;
-        // block_and_enchant.Obsidian.enchant = false;
-    }
-
-
-    if (sack_collection.enchanted_gold_block > 0) {
-        calculate_data.Gold.block_and_enchant.block = true;
-        // block_and_enchant.Gold.block = true;
-    } else if (sack_collection.enchanted_gold > 0 && sack_collection.enchanted_gold_block === 0) {
-        calculate_data.Gold.block_and_enchant.block = false;
-        calculate_data.Gold.block_and_enchant.enchant = true;
-        // block_and_enchant.Gold.block = false;
-        // block_and_enchant.Gold.enchant = true;
-    } else {
-        calculate_data.Gold.block_and_enchant.block = false;
-        calculate_data.Gold.block_and_enchant.enchant = false;
-        // block_and_enchant.Gold.block = false;
-        // block_and_enchant.Gold.enchant = false;
-    }
-
-
-    if (sack_collection.enchanted_quartz_block > 0) {
-        calculate_data.Quartz.block_and_enchant.block = true;
-        // block_and_enchant.Quartz.block = true;
-    } else if (sack_collection.enchanted_quartz > 0 && sack_collection.enchanted_quartz_block === 0) {
-        calculate_data.Quartz.block_and_enchant.block = false;
-        calculate_data.Quartz.block_and_enchant.enchant = true;
-        // block_and_enchant.Quartz.block = false;
-        // block_and_enchant.Quartz.enchant = true;
-    } else {
-        calculate_data.Quartz.block_and_enchant.block = false;
-        calculate_data.Quartz.block_and_enchant.enchant = false;
-        // block_and_enchant.Quartz.block = false;
-        // block_and_enchant.Quartz.enchant = false;
-    }
-
-
-    if (sack_collection.enchanted_umber > 0) {
-        calculate_data.Umber.block_and_enchant.enchant = true;
-        // block_and_enchant.Umber.enchant = true;
-    } else {
-        calculate_data.Umber.block_and_enchant.enchant = false;
-        // block_and_enchant.Umber.enchant = false;
-    }
-
-
-    if (sack_collection.enchanted_tungsten > 0) {
-        calculate_data.Tungsten.block_and_enchant.enchant = true;
-        // block_and_enchant.Tungsten.enchant = true;
-    } else {
-        calculate_data.Tungsten.block_and_enchant.enchant = false;
-        // block_and_enchant.Tungsten.enchant = false;
-    }
-
-
-    if (sack_collection.enchanted_glacite > 0) {
-        calculate_data.Glacite.block_and_enchant.enchant = true;
-        // block_and_enchant.Glacite.enchant = true;
-    } else {
-        calculate_data.Glacite.block_and_enchant.enchant = false;
-        // block_and_enchant.Glacite.enchant = false;
-    }
-
-
-    if (sack_collection.enchanted_mithril > 0) {
-        calculate_data.Mithril.block_and_enchant.enchant = true;
-        // block_and_enchant.Mithril.enchant = true;
-    } else {
-        calculate_data.Mithril.block_and_enchant.enchant = false;
-        // block_and_enchant.Mithril.enchant = false;
-    }
-
     // adds the sack collection values to the total collection values
-    calculate_data.Obsidian.sack_collection.base += sack_collection.obsidian;
-    calculate_data.Obsidian.sack_collection.enchanted += sack_collection.enchanted_obsidian;
-
-    calculate_data.Gold.sack_collection.base += sack_collection.gold_ingot;
-    calculate_data.Gold.sack_collection.enchanted += sack_collection.enchanted_gold;
-    calculate_data.Gold.sack_collection.enchanted_block += sack_collection.enchanted_gold_block;
-
-    calculate_data.Quartz.sack_collection.base += sack_collection.nether_quartz;
-    calculate_data.Quartz.sack_collection.enchanted += sack_collection.enchanted_quartz;
-    calculate_data.Quartz.sack_collection.enchanted_block += sack_collection.enchanted_quartz_block;
-
-    calculate_data.Umber.sack_collection.base += sack_collection.umber;
-    calculate_data.Umber.sack_collection.enchanted += sack_collection.enchanted_umber;
-
-    calculate_data.Tungsten.sack_collection.base += sack_collection.tungsten;
-    calculate_data.Tungsten.sack_collection.enchanted += sack_collection.enchanted_tungsten;
-
-    calculate_data.Glacite.sack_collection.base += sack_collection.glacite;
-    calculate_data.Glacite.sack_collection.enchanted += sack_collection.enchanted_glacite;
-
-    calculate_data.Mithril.sack_collection.base += sack_collection.mithril;
-    calculate_data.Mithril.sack_collection.enchanted += sack_collection.enchanted_mithril;
+    calculate_data.Obsidian.sack_collection += sack_collection.obsidian + sack_collection.enchanted_obsidian * 160;
+    calculate_data.Gold.sack_collection += sack_collection.gold_ingot + sack_collection.enchanted_gold * 160 + sack_collection.enchanted_gold_block * 25600;
+    calculate_data.Quartz.sack_collection += sack_collection.nether_quartz + sack_collection.enchanted_quartz * 160 + sack_collection.enchanted_quartz_block * 25600;
+    calculate_data.Umber.sack_collection += sack_collection.umber + sack_collection.enchanted_umber * 160;
+    calculate_data.Tungsten.sack_collection += sack_collection.tungsten + sack_collection.enchanted_tungsten * 160;
+    calculate_data.Glacite.sack_collection += sack_collection.glacite + sack_collection.enchanted_glacite * 160;
+    calculate_data.Mithril.sack_collection += sack_collection.mithril + sack_collection.enchanted_mithril * 160;
 
     // sets the approximate collection values to 0 as they were only an aproximation of what was going into the sack
     // and now that the more accurate values are known, the aproximation is no longer needed
     for (let key in calculate_data) {
-        for (let key2 in calculate_data[key].aprox_collection) {
-            calculate_data[key].aprox_collection[key2] = 0;
-        }
+        calculate_data[key].aprox_collection = 0;
+    }
+
+    if (calculate_data.Gold.true_collection > 0) {
+        calculate_data.Gold.true_collection += sack_collection.gold_ingot + sack_collection.enchanted_gold * 160 + sack_collection.enchanted_gold_block * 25600;
     }
 }

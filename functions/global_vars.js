@@ -28,32 +28,20 @@ export const global_vars = {
 
 export const calculate_data = {
     Obsidian: {
-        sack_collection: { // sack collection is what it know you have in your sack from chat messages
-            base: 0,
-            enchanted: 0,
-            enchanted_block: 0,
-        },
 
-        aprox_collection: { // aprox collection is what you have aproximataly collected in between chat messages based on blocks broken and fortune
-            raw: 0,
-            base: 0,
-            enchanted: 0,
-            enchanted_block: 0,
-        },
-
-        bz_prices: { // the rates of the different varients of this collection
-            base: 0,
-            enchanted: 0,
-            enchanted_block: 0,
-        },
-
-        block_and_enchant: { // for accurate pricing of the aprox collection it need to know if the play has the collection in block form or enchanted form
-            block: false,
-            enchant: false,
-        },
+        sack_collection: 0,
+        aprox_collection: 0,
+        bz_rate: 0, // the rate of the collection in the bazaar
 
         blocks_broken: 0,
-        collection_world: "The End", // the only valid world for obsidian collection
+        true_collection: 0,
+        compact_rate: 160, // 160 obby makes an enchanted obby
+
+        collection_world: {
+            "The End": {
+                "minecraft:obsidian": 1,
+            },
+        },
 
         display: { // the display data for the tracker
             blocks_net: 0, 
@@ -64,6 +52,7 @@ export const calculate_data = {
             profit_ph: 0, 
             alt_profit_net: 0,  // value for ovoids
             alt_profit_ph: 0,
+            time_to_goal: "0s",
             runtime: "0s",
         }
     },
@@ -71,32 +60,21 @@ export const calculate_data = {
 
 
     Gold: {
-        sack_collection: {
-            base: 0,
-            enchanted: 0,
-            enchanted_block: 0,
-        },
 
-        aprox_collection: {
-            raw: 0,
-            base: 0,
-            enchanted: 0,
-            enchanted_block: 0,
-        },
-
-        bz_prices: {
-            base: 0,
-            enchanted: 0,
-            enchanted_block: 0,
-        },
-
-        block_and_enchant: {
-            block: false,
-            enchant: false,
-        },
+        sack_collection: 0,
+        aprox_collection: 0,
+        bz_rate: 0, // the rate of the collection in the bazaar
 
         blocks_broken: 0,
-        collection_world: "TBD",
+        true_collection: 0,
+        compact_rate: 25600, // 25600 gold ingots makes an enchanted block
+
+        collection_world: {
+            "Crystal Hollows": {
+                "minecraft:gold_block": 6,
+                "minecraft:gold_ore": 1,
+            },
+        },
 
         display: {
             blocks_net: 0, 
@@ -107,39 +85,28 @@ export const calculate_data = {
             profit_ph: 0,
             alt_profit_net: 0,  // null, should never actually be displayed
             alt_profit_ph: 0,
+            time_to_goal: "0s",
             runtime: "0s",
-        }
+        },
     },
 
 
 
     Quartz: {
-        sack_collection: {
-            base: 0,
-            enchanted: 0,
-            enchanted_block: 0,
-        },
 
-        aprox_collection: {
-            raw: 0,
-            base: 0,
-            enchanted: 0,
-            enchanted_block: 0,
-        },
-
-        bz_prices: {
-            base: 0,
-            enchanted: 0,
-            enchanted_block: 0,
-        },
-        
-        block_and_enchant: {
-            block: false,
-            enchant: false,
-        },
+        sack_collection: 0,
+        aprox_collection: 0,
+        bz_rate: 0, // the rate of the collection in the bazaar
 
         blocks_broken: 0,
-        collection_world: "TBD",
+        true_collection: 0,
+        compact_rate: 25600,
+
+        collection_world: {
+            "Crimson Ilse": {
+                "minecraft:quartz_ore": 1, // dont acutally  know if this is correct
+            },
+        },
 
         display: {
             blocks_net: 0, 
@@ -150,39 +117,30 @@ export const calculate_data = {
             profit_ph: 0,
             alt_profit_net: 0,  // maybe the value for netherack gained from the collection i dunno
             alt_profit_ph: 0,
+            time_to_goal: "0s",
             runtime: "0s",
-        }
+        },
     },
 
 
 
     Umber: {
-        sack_collection: {
-            base: 0,
-            enchanted: 0,
-            enchanted_block: 0,
-        },
 
-        aprox_collection: {
-            raw: 0,
-            base: 0,
-            enchanted: 0,
-            enchanted_block: 0,
-        },
-
-        bz_prices: {
-            base: 0,
-            enchanted: 0,
-            enchanted_block: 0,
-        },
-
-        block_and_enchant: {
-            block: false,
-            enchant: false,
-        },
+        sack_collection: 0,
+        aprox_collection: 0,
+        bz_rate: 0, // the rate of the collection in the bazaar
 
         blocks_broken: 0,
-        collection_world: "TBD",
+        true_collection: 0,
+        compact_rate: 160,
+
+        collection_world: {
+            "Dwarven Mines": {
+                "minecraft:hardened_clay": 1,
+                "minecraft:stained_hardened_clay[color=brown]": 2,
+                "minecraft:double_stone_slab2[seamless=true,variant=red_sandstone]": 3,
+            },
+        },
 
         display: {
             blocks_net: 0, 
@@ -193,39 +151,29 @@ export const calculate_data = {
             profit_ph: 0,
             alt_profit_net: 0, // null, should never actually be displayed
             alt_profit_ph: 0,
+            time_to_goal: "0s",
             runtime: "0s",
-        }
+        },
     },
 
 
 
     Tungsten: {
-        sack_collection: {
-            base: 0,
-            enchanted: 0,
-            enchanted_block: 0,
-        },
 
-        aprox_collection: {
-            raw: 0,
-            base: 0,
-            enchanted: 0,
-            enchanted_block: 0,
-        },
-
-        bz_prices: {
-            base: 0,
-            enchanted: 0,
-            enchanted_block: 0,
-        },
-
-        block_and_enchant: {
-            block: false,
-            enchant: false,
-        },
+        sack_collection: 0,
+        aprox_collection: 0,
+        bz_rate: 0, // the rate of the collection in the bazaar
 
         blocks_broken: 0,
-        collection_world: "TBD",
+        true_collection: 0,
+        compact_rate: 160,
+
+        collection_world: {
+            "Dwarven Mines": {
+                "minecraft:cobblestone": 1,
+                "minecraft:clay": 3,
+            },
+        },
 
         display: {
             blocks_net: 0, 
@@ -236,39 +184,28 @@ export const calculate_data = {
             profit_ph: 0,
             alt_profit_net: 0, // null, should never actually be displayed
             alt_profit_ph: 0,
+            time_to_goal: "0s",
             runtime: "0s",
-        }
+        },
     },
 
 
 
     Glacite: {
-        sack_collection: {
-            base: 0,
-            enchanted: 0,
-            enchanted_block: 0,
-        },
 
-        aprox_collection: {
-            raw: 0,
-            base: 0,
-            enchanted: 0,
-            enchanted_block: 0,
-        },
-
-        bz_prices: {
-            base: 0,
-            enchanted: 0,
-            enchanted_block: 0,
-        },
-
-        block_and_enchant: {
-            block: false,
-            enchant: false,
-        },
+        sack_collection: 0,
+        aprox_collection: 0,
+        bz_rate: 0, // the rate of the collection in the bazaar
 
         blocks_broken: 0,
-        collection_world: "TBD",
+        true_collection: 0,
+        compact_rate: 160,
+
+        collection_world: {
+            "Dwarven Mines": {
+                "minecraft:packed_ice": 1,
+            }
+        },
 
         display: {
             blocks_net: 0, 
@@ -279,39 +216,43 @@ export const calculate_data = {
             profit_ph: 0,
             alt_profit_net: 0, // null, should never actually be displayed
             alt_profit_ph: 0,
+            time_to_goal: "0s",
             runtime: "0s",
-        }
+        },
     },
 
 
 
     Mithril: {
-        sack_collection: {
-            base: 0,
-            enchanted: 0,
-            enchanted_block: 0,
-        },
-        
-        aprox_collection: {
-            raw: 0,
-            base: 0,
-            enchanted: 0,
-            enchanted_block: 0,
-        },
 
-        bz_prices: {
-            base: 0,
-            enchanted: 0,
-            enchanted_block: 0,
-        },
-
-        block_and_enchant: {
-            block: false,
-            enchant: false,
-        },
+        sack_collection: 0,
+        aprox_collection: 0,
+        bz_rate: 0, // the rate of the collection in the bazaar
 
         blocks_broken: 0,
-        collection_world: "TBD",
+        true_collection: 0,
+        compact_rate: 160,
+
+        collection_world: {
+            "Dwarven Mines": {
+                "minecraft:wool[color=gray]" : 1,
+                "minecraft:stained_hardened_clay[color=cyan]" : 1,
+
+                "minecraft:prismarine[variant=dark_prismarine]" : 2,
+                "minecraft:prismarine[variant=prismarine_bricks]" : 2,
+                "minecraft:prismarine[variant=prismarine]" : 2,
+
+                "minecraft:wool[color=light_blue]" : 5,
+            },
+
+            "Crystal Hollows": {
+                "minecraft:prismarine[variant=dark_prismarine]" : 2,
+                "minecraft:prismarine[variant=prismarine_bricks]" : 2,
+                "minecraft:prismarine[variant=prismarine]" : 2,
+
+                "minecraft:wool[color=light_blue]" : 5,
+            },
+        },
 
         display: {
             blocks_net: 0, 
@@ -322,8 +263,9 @@ export const calculate_data = {
             profit_ph: 0,
             alt_profit_net: 0, // null, should never actually be displayed
             alt_profit_ph: 0,
+            time_to_goal: "0s",
             runtime: "0s",
-        }
+        },
     }
 }
 
